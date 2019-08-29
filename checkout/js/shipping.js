@@ -6,7 +6,9 @@ function getSelectedShippingMethodLabelTextFromCheckedLi() {
     return getSelectedShippingMethodLabelTextFromLi( jQuery( '#shipping_method > li  [checked]' ).siblings( 'label' ) );
 }
 function getSelectedShippingMethodLabelTextFromLi( label ) {
-    return label[0].innerHTML;
+    if( label.length ) {
+        return label[0].innerHTML;
+    } return "";
 }
 function setSelectedShippingMethodInOrderReviewTable( selectedShippingMethodLabelText ) {
     setTimeout( function( selectedShippingMethodLabelText ) {
@@ -22,20 +24,22 @@ function setSelectedShippingMethodInOrderReviewTable( selectedShippingMethodLabe
     }, 2500, selectedShippingMethodLabelText );//done within a timeaout to avoid being overwritten by woo ajax
 }
 jQuery( document ).ready(function( $ ) {
-    setSelectedShippingMethodInOrderReviewTable( getSelectedShippingMethodLabelTextFromCheckedLi() );
-    $(document.body).on("update_checkout", function() {       
+    if( $("#shipping_method").length ) {
         setSelectedShippingMethodInOrderReviewTable( getSelectedShippingMethodLabelTextFromCheckedLi() );
-    });
-    $("#shipping_method > li").on("click", function() {     
-        setSelectedShippingMethodInOrderReviewTable( getSelectedShippingMethodLabelTextFromLi( $(this).find( 'label' ) ) );
-    });
+        $(document.body).on("update_checkout", function() {       
+            setSelectedShippingMethodInOrderReviewTable( getSelectedShippingMethodLabelTextFromCheckedLi() );
+        });
+        $("#shipping_method > li").on("click", function() {     
+            setSelectedShippingMethodInOrderReviewTable( getSelectedShippingMethodLabelTextFromLi( $(this).find( 'label' ) ) );
+        });
 
-    $("#woocommerce-form-coupon-button-container>button, #ship-to-different-address-checkbox").on("click", function() {     
-        setSelectedShippingMethodInOrderReviewTable( getSelectedShippingMethodLabelTextFromCheckedLi() );    
-    });
+        $("#woocommerce-form-coupon-button-container>button, #ship-to-different-address-checkbox").on("click", function() {     
+            setSelectedShippingMethodInOrderReviewTable( getSelectedShippingMethodLabelTextFromCheckedLi() );    
+        });
 
-    $("#billing_country, #shipping_country").on("change", function() {    
-        setSelectedShippingMethodInOrderReviewTable( getSelectedShippingMethodLabelTextFromCheckedLi() );
-    
-    });
+        $("#billing_country, #shipping_country").on("change", function() {    
+            setSelectedShippingMethodInOrderReviewTable( getSelectedShippingMethodLabelTextFromCheckedLi() );
+        
+        });
+    }
 });
