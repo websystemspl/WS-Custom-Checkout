@@ -1,0 +1,114 @@
+#custom-checkout-page-section-button-containers-container {
+    display: flex; 
+    justify-content: space-between;    
+    text-align: center;
+    flex-wrap: wrap;
+}
+.custom-checkout-page-section-button-container {
+    cursor: pointer;
+}
+.custom-checkout-page-section-button-container div, .custom-checkout-page-section-button-container span{
+    cursor: inherit;
+}
+.custom-checkout-page-section-button-number {
+    height: 50px;
+    width: 50px;
+    margin: auto !important;
+    display: block !important;
+}
+
+#custom-checkout-page-section-complete-button-container{
+    cursor: default;
+}
+#custom-checkout-page-form-container {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  font-size: 0.8em;
+}
+
+#custom-checkout-page-order-review {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    margin-left: 1rem;
+}
+
+.section-change-buttons-container {
+    display: flex; 
+    justify-content: space-between;
+}
+
+.woocommerce-form-coupon {    
+    margin-bottom: 1rem;
+}
+
+#woocommerce-form-coupon-button-container {
+    display: flex;
+}
+
+#woocommerce-form-coupon-button-container button {
+    margin: auto;
+}
+
+#place_order {
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+#custom-checkout-page-sections {
+    position: relative;
+    overflow: hidden;
+}
+
+.custom-checkout-page-section {
+    width: 100%;
+    position: absolute;
+}
+
+.woocommerce-checkout {
+    width: 100%;    
+}
+
+.woocommerce {
+    max-width: 100%;   
+}
+
+#order_review_heading, #order_review {
+    width:100% !important;
+}
+
+#coupon_code {
+    max-width: 100%;
+    width: 100%;
+    margin: auto;
+}
+
+
+.woocommerce-checkout-review-order-table th, .woocommerce-checkout-review-order-table td {
+    word-break: break-word;
+}
+
+
+@media (max-width: 600px) {
+
+    #custom-checkout-page-form-container {
+        display: block;
+    }
+
+    .section-change-buttons-container {
+        font-size: 12px;
+    }
+    #custom-checkout-page-order-review {
+        margin-left: 0rem;
+    }
+
+    .woocommerce-form-coupon {
+        display: flex;
+    }
+    
+    #custom-checkout-page-order-review, .woocommerce-form-coupon>div.ui-input-text, .woocommerce-form-coupon>div.ui-input-text>input {
+        width: 100%;
+    }
+
+}
