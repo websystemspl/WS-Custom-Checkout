@@ -22,19 +22,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 function generate_section_change_button_html( $target_section_number, $section, $direction ) {
-	$button_inner__html = "Go to {$section[ 'label' ]}";
+	$button_inner_html = esc_html__( "Go to {$section[ 'label' ]}", 'woocommerce' );
 	if( 'next' == $direction ) {
-		$button_inner__html .= ' --->';
+		$button_inner_html .= '&nbsp;&rarr;';
 		$this_section_number = $target_section_number - 1;
 	} else {//previous
-		$button_inner__html = '<--- ' . $button_inner__html;
+		$button_inner_html = '&larr;&nbsp;' . $button_inner_html;
 		$this_section_number = $target_section_number + 1;
 	}
-	return "<button class=\"custom-checkout-page-section-change-button-neighbour\" data-this-section-number=\"{$this_section_number}\" data-target-section-number=\"{$target_section_number}\">{$button_inner__html}</button>";
+	return "<button class=\"button custom-checkout-page-section-change-button-neighbour\" data-this-section-number=\"{$this_section_number}\" data-target-section-number=\"{$target_section_number}\">{$button_inner_html}</button>";
 }
 
 
-$sections = [ [ 'name' => 'cart', 'label' => 'Cart' ], [ 'name' => 'info', 'label' => 'Information' ], [ 'name' => 'shipping', 'label' => 'Shipping' ], [ 'name' => 'payment', 'label' => 'Payment' ], [ 'name' => 'complete', 'label' => 'Complete'] ]; 
+$sections = [ [ 'name' => 'cart', 'label' => esc_html__( 'Cart', 'woocommerce' ) ], [ 'name' => 'info', 'label' => esc_html__( 'Information', 'woocommerce' ) ], [ 'name' => 'shipping', 'label' => esc_html__( 'Shipping', 'woocommerce' ) ], [ 'name' => 'payment', 'label' => esc_html__( 'Payment', 'woocommerce' ) ], [ 'name' => 'complete', 'label' => esc_html__( 'Complete', 'woocommerce' )] ]; 
 $counter_for_preserving_section_names = 1;
 
 
