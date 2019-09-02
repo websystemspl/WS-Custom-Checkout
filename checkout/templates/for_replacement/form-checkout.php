@@ -22,7 +22,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 function generate_section_change_button_html( $target_section_number, $section, $direction ) {
-	$button_inner_html = esc_html__( "Go to {$section[ 'label' ]}", 'woocommerce' );
+	//$button_inner_html = esc_html__( "Go to {$section[ 'label' ]}", 'woocommerce' );
+  $button_inner_html = sprintf(__( "Go to %s", 'web_systems_custom_woocommerce_checkout_plugin' ), $section['label']);
 	if( 'next' == $direction ) {
 		$button_inner_html .= '&nbsp;&rarr;';
 		$this_section_number = $target_section_number - 1;
@@ -34,7 +35,7 @@ function generate_section_change_button_html( $target_section_number, $section, 
 }
 
 
-$sections = [ [ 'name' => 'cart', 'label' => esc_html__( 'Cart', 'woocommerce' ) ], [ 'name' => 'info', 'label' => esc_html__( 'Information', 'woocommerce' ) ], [ 'name' => 'shipping', 'label' => esc_html__( 'Shipping', 'woocommerce' ) ], [ 'name' => 'payment', 'label' => esc_html__( 'Payment', 'woocommerce' ) ], [ 'name' => 'complete', 'label' => esc_html__( 'Complete', 'woocommerce' )] ]; 
+$sections = [ [ 'name' => 'cart', 'label' => esc_html__( 'Cart', 'woocommerce' ) ], [ 'name' => 'info', 'label' => esc_html__( 'Information', 'web_systems_custom_woocommerce_checkout_plugin' ) ], [ 'name' => 'shipping', 'label' => esc_html__( 'Shipping', 'woocommerce' ) ], [ 'name' => 'payment', 'label' => esc_html__( 'Payment', 'woocommerce' ) ], [ 'name' => 'complete', 'label' => esc_html__( 'Complete', 'web_systems_custom_woocommerce_checkout_plugin' )] ]; 
 $counter_for_preserving_section_names = 1;
 
 
@@ -90,7 +91,7 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
 
 					<?php endif; ?>
 					<div class="section-change-buttons-container">
-						<?php echo generate_section_change_button_html( 0, ['label'=>'Cart'],'previous'); ?>
+						<?php echo generate_section_change_button_html( 0, ['label'=>__( 'Cart', 'woocommerce' )],'previous'); ?>
 						<?php echo generate_section_change_button_html( $counter_for_preserving_section_names + 1, $sections[ $counter_for_preserving_section_names + 1 ], 'next' ); ?>
 					</div>
 				</div>

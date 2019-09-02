@@ -1,6 +1,7 @@
 <?php
 /*
  * Plugin Name:       Web Systems Custom Woocommerce Checkout Page
+ * Text Domain: web_systems_custom_woocommerce_checkout_plugin
  * Author: Web Systems
  * Author URI: https://www.web-systems.pl/
  * Description:       Tab-based checkout page layout.
