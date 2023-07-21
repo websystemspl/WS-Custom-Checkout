@@ -19,6 +19,7 @@ class Web_Systems_Custom_Woocommerce_Checkout_Plugin_Manager {
     public function run() {
         $this->register_template_replacement_filter();
         $this->register_hooks();
+        $this->checkoutPageSetting();
     }
 
 
@@ -39,4 +40,11 @@ class Web_Systems_Custom_Woocommerce_Checkout_Plugin_Manager {
 
         $hook_manager->run();
     }
+
+    private function checkoutPageSetting() {
+        require_once(  WEB_SYSTEMS_CUSTOM_WOOCOMMERCE_CHECKOUT_PLUGIN_DIR_PATH . 'includes/class-checkout-page-settings.php' );
+        $checkout_Page_Settings = new Checkout_Page_Settings();
+        $checkout_Page_Settings->run();
+    }
+
 }

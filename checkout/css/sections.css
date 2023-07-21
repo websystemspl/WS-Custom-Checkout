@@ -3,16 +3,19 @@
     justify-content: space-between;    
     text-align: center;
     flex-wrap: wrap;
+    margin-bottom: 10px;
 }
 .custom-checkout-page-section-button-container {
     cursor: pointer;
+    padding: 10px 20px;
 }
+
 .custom-checkout-page-section-button-container div, .custom-checkout-page-section-button-container span{
     cursor: inherit;
 }
 .custom-checkout-page-section-button-number {
-    height: 50px;
-    width: 50px;
+    height: 25px;
+    width: 25px;
     margin: auto !important;
     display: block !important;
 }
