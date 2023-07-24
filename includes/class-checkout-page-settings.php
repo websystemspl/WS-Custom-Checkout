@@ -18,25 +18,27 @@ class Checkout_Page_Settings {
 	 *
 	 * @var array $fields
 	 */
+
+	private $generalFields = [		[
+		'id' => 'active',
+		'label' => 'Active',
+		'description' => '',
+		'type' => 'checkbox',
+	],
+	[
+		'id' => 'banner-background-color',
+		'label' => 'Banner Background Color',
+		'description' => '',
+		'type' => 'color',
+	],
+	[
+		'id' => 'active-step-color',
+		'label' => 'Active Step Color',
+		'description' => '',
+		'type' => 'color',
+	]];
+
 	private $fields = [
-		[
-			'id' => 'active',
-			'label' => 'Active',
-			'description' => '',
-			'type' => 'checkbox',
-		],
-		[
-			'id' => 'banner-background-color',
-			'label' => 'Banner Background Color',
-			'description' => '',
-			'type' => 'color',
-		],
-		[
-			'id' => 'active-step-color',
-			'label' => 'Active Step Color',
-			'description' => '',
-			'type' => 'color',
-		],
 		[
 			'id' => 'buttons-font-size',
 			'label' => 'Buttons font size',
@@ -57,7 +59,7 @@ class Checkout_Page_Settings {
 		],
 		[
 			'id' => 'buttons-padding',
-			'label' => 'Buttons border padding',
+			'label' => 'Buttons padding',
 			'description' => '',
 			'type' => 'number',
 		],
@@ -94,7 +96,18 @@ class Checkout_Page_Settings {
 		add_action( 'admin_init', [$this, 'settings_init'] );
 		add_action( 'admin_menu', [$this, 'options_page'] );
         add_action('wp_head', [$this, 'addCustomStyles']);
+		add_action('admin_enqueue_scripts', [$this, 'admin_enqueue_scripts']);
 	}
+
+	public function admin_enqueue_scripts($screen) {
+		// Quit if it's not our screen
+		if('toplevel_page_checkout-page-settings' !== $screen) return;
+		
+		// If we get this far, it must be our screen
+		// Enqueue our assets
+		wp_enqueue_script('checkout-page-settings-js', WEB_SYSTEMS_CUSTOM_WOOCOMMERCE_CHECKOUT_PLUGIN_DIR_URL . 'assets/js/admin/sections.js', array(), null, true);
+		wp_enqueue_style('checkout-page-settings-style', WEB_SYSTEMS_CUSTOM_WOOCOMMERCE_CHECKOUT_PLUGIN_DIR_URL . 'assets/css/admin/sections.css');
+	  }
 
 	/**
 	 * Register the settings and all fields.
@@ -104,25 +117,35 @@ class Checkout_Page_Settings {
 		// Register a new setting this page.
 		register_setting( 'checkout-page-settings', 'wporg_options' );
 
-
 		// Register a new section.
 		add_settings_section(
-			'checkout-page-settings-section',
-			__( '', 'checkout-page-settings' ),
+			'checkout-page-general-section',
+			__( 'General', 'checkout-page-settings' ),
+			[$this, 'render_section'],
+			'checkout-page-settings'
+		);
+		add_settings_section(
+			'checkout-page-buttons-section',
+			__( 'Buttons', 'checkout-page-settings' ),
 			[$this, 'render_section'],
 			'checkout-page-settings'
 		);
 
 
 		/* Register All The Fields. */
-		foreach( $this->fields as $field ) {
+		$this->addSettingFields($this->generalFields, [$this, 'render_field'], 'checkout-page-settings', 'checkout-page-general-section' );
+		$this->addSettingFields($this->fields, [$this, 'render_field'], 'checkout-page-settings', 'checkout-page-buttons-section' );
+	}
+
+	function addSettingFields($fields, $callback, $manuPage, $section){
+		foreach( $fields as $field ) {
 			// Register a new field in the main section.
 			add_settings_field(
 				$field['id'], /* ID for the field. Only used internally. To set the HTML ID attribute, use $args['label_for']. */
-				__( $field['label'], 'checkout-page-settings' ), /* Label for the field. */
-				[$this, 'render_field'], /* The name of the callback function. */
-				'checkout-page-settings', /* The menu page on which to display this field. */
-				'checkout-page-settings-section', /* The section of the settings page in which to show the box. */
+				__( $field['label'], $manuPage ), /* Label for the field. */
+				$callback, /* The name of the callback function. */
+				$manuPage, /* The menu page on which to display this field. */
+				$section, /* The section of the settings page in which to show the box. */
 				[
 					'label_for' => $field['id'], /* The ID of the field. */
 					'class' => 'wporg_row', /* The class of the field. */
@@ -168,17 +191,33 @@ class Checkout_Page_Settings {
 
 		// show error/update messages
 		settings_errors( 'wporg_messages' );
+		global $wp_settings_sections;
+		$page = $_GET['page'];
+		$sections = $wp_settings_sections[$page];
 		?>
-		<div class="wrap">
+		<div id="settings-container" class="wrap">
 			<h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
 			<h2 class="description"></h2>
+			<div class="settings-tabs">
+			<?php
+				foreach($sections as $section){
+					?>
+					<a href="<?php echo "#" . $section["id"]; ?>"><?php echo $section["title"]; ?></a>
+					<?php
+				}
+			?>
+		</div>
 			<form action="options.php" method="post">
 				<?php
 				/* output security fields for the registered setting "wporg" */
 				settings_fields( 'checkout-page-settings' );
 				/* output setting sections and their fields */
 				/* (sections are registered for "wporg", each field is registered to a specific section) */
-				do_settings_sections( 'checkout-page-settings' );
+				
+			?>
+				<div id="checkout-page-general-section" class="active"><?php do_settings_fields( 'checkout-page-settings',  'checkout-page-general-section'); ?></div>
+				<div id="checkout-page-buttons-section"><?php do_settings_fields( 'checkout-page-settings',  'checkout-page-buttons-section'); ?></div>
+<?php
 				/* output save settings button */
 				submit_button( 'Save Settings' );
 				?>
@@ -193,6 +232,7 @@ class Checkout_Page_Settings {
 	 * @param array $args Args to configure the field.
 	 */
 	function render_field( array $args ) : void {
+
 
 		$field = $args['field'];
 
@@ -383,8 +423,14 @@ class Checkout_Page_Settings {
 	 * }
 	 */
 	function render_section( array $args ) : void {
+		// echo "<pre>";
+		// var_dump($args);
+		// echo "</pre>";
 		?>
+		<div class="<?php echo $args['id'] ?>">
 		<p id="<?php echo esc_attr( $args['id'] ); ?>"><?php esc_html_e( '', 'checkout-page-settings' ); ?></p>
+		</div>
+
 		<?php
 	}
 

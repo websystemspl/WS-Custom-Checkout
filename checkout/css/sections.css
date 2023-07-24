@@ -19,6 +19,9 @@
     margin: auto !important;
     display: block !important;
 }
+.custom-checkout-page-section-change-button-neighbour{
+    cursor: pointer;
+}
 
 #custom-checkout-page-section-complete-button-container{
     cursor: default;
