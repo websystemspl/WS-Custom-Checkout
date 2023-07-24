@@ -1,0 +1,51 @@
+
+
+.settings-tabs {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: white;
+}
+
+.settings-tabs > a {
+padding: 10px;
+font-size: 18px;
+color: #000;
+text-decoration: unset;
+text-transform: uppercase;
+}
+.settings-tabs > a.active {
+    background-color: rgba(0,0,0,0.1);
+    }
+
+.settings-tabs > a:hover {
+    background-color: rgba(0,0,0,0.1);
+}
+
+#settings-container form {
+    padding-left: 10px;
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+#settings-container form label {
+    display: inline-block;
+    width: 15%;
+}
+
+#settings-container form label,
+#settings-container form input {
+    margin-bottom: 10px;
+}
+
+#settings-container form .submit {
+    margin-top: 0px;
+    padding-top: 0px;
+}
+
+#settings-container form div{
+    display: none;
+}
+
+#settings-container form div.active{
+    display: block;
+}
