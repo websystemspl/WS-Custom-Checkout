@@ -118,3 +118,8 @@
     }
 
 }
+
+.woocommerce-page .woocommerce-checkout #customer_details, .woocommerce-page.woocommerce-order-pay #customer_details {
+    width: 100% !important;
+    float: unset !important;
+}
