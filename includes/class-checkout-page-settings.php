@@ -87,6 +87,18 @@ class Checkout_Page_Settings {
 			'description' => '',
 			'type' => 'number',
 		],
+		[
+			'id' => 'buttons-opacity-value',
+			'label' => 'Buttons opacity on hover value (value / 100)',
+			'description' => '',
+			'type' => 'number',
+		],
+		[
+			'id' => 'buttons-background-color-hover',
+			'label' => 'Buttons background color on hover',
+			'description' => '',
+			'type' => 'color',
+		],
 	];
 
 	/**
@@ -399,6 +411,8 @@ class Checkout_Page_Settings {
 					id="<?php echo esc_attr( $field['id'] ); ?>"
 					name="wporg_options[<?php echo esc_attr( $field['id'] ); ?>]"
 					value="<?php echo isset( $options[ $field['id'] ] ) ? esc_attr( $options[ $field['id'] ] ) : ''; ?>"
+					min="0"
+					max="100"
 				>
 				<p class="description">
 					<?php esc_html_e( $field['description'], 'checkout-page-settings' ); ?>
@@ -445,6 +459,8 @@ class Checkout_Page_Settings {
 		$buttonsBorderSize = $options['buttons-border-size'];
 		$buttonsPadding = $options['buttons-padding'];
 		$buttonsBorderRadius = $options['buttons-border-radius'];
+		$buttonsOpacityValue = $options['buttons-opacity-value'];
+		$buttonsOpacityBackgroundColor = $options['buttons-background-color-hover'];
 		
         $active = "";
         if(!isset($options['active'])){
@@ -457,24 +473,27 @@ class Checkout_Page_Settings {
 			}else{
 				$border = "border:solid 1px";
 			}
-            
         }
         $custom_css = "" . $active . "
         #custom-checkout-page-section-button-containers-container {
-                background-color: {$bannerColor} !important;
+                background-color: {$bannerColor};
         }
         .custom-checkout-page-section-button-container.current{
-            background-color: {$currentStepColor} !important;
+            background-color: {$currentStepColor};
         }
         .custom-checkout-page-section-change-button-neighbour{
 			font-size:" . $buttonsFontSize . "px;
-            background-color: {$buttonsBackgroundColor} !important;
-            color: {$buttonsTextColor} !important;
+            background-color: {$buttonsBackgroundColor};
+            color: {$buttonsTextColor};
 			" . $border . ";
-			border-color: " . $buttonsBorderColor . ";
+			border-color: {$buttonsBorderColor};
 			padding:" . $buttonsPadding . "px;
 			border-radius:" . $buttonsBorderRadius . "px;
-        }";
+        }
+		.custom-checkout-page-section-change-button-neighbour:hover{
+			opacity: {$buttonsOpacityValue};
+			background-color: {$buttonsOpacityBackgroundColor};
+		}";
         
         echo "<style>" . $custom_css . "</style>";
     }

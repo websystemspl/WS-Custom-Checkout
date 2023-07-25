@@ -1,8 +1,8 @@
 
 
 .settings-tabs {
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 13px;
+    padding-bottom: 11px;
     background-color: white;
 }
 
@@ -29,7 +29,7 @@ text-transform: uppercase;
 
 #settings-container form label {
     display: inline-block;
-    width: 15%;
+    width: 20%;
 }
 
 #settings-container form label,
