@@ -1,11 +1,15 @@
 <?php
 /*
  * Plugin Name:       Web Systems Custom Woocommerce Checkout Page
- * Text Domain: web_systems_custom_woocommerce_checkout_plugin
- * Author: Web Systems
- * Author URI: https://www.web-systems.pl/
+ * Text Domain:       web_systems_custom_woocommerce_checkout_plugin
  * Description:       Tab-based checkout page layout.
  * Version:           1.0
+ * Requires at least: 5.0
+ * Author:            Web Systems
+ * Author URI:        https://www.web-systems.pl/
+ * License:           GPL v2 or later
+ * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
+ * Update URI:        https://example.com/my-plugin/
  */
  
 if ( ! defined( 'WPINC' ) ) {

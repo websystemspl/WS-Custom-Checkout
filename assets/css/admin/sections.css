@@ -49,3 +49,23 @@ text-transform: uppercase;
 #settings-container form div.active{
     display: block;
 }
+
+.information-container .first-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.information-container > .description {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.information-container > .description > p{
+    font-size: 16px;
+}
+
+.information-container .first-row h1 {
+    padding: 0;
+    margin-left: 25px;
+}

@@ -203,13 +203,20 @@ class Checkout_Page_Settings {
 
 		// show error/update messages
 		settings_errors( 'wporg_messages' );
+
 		global $wp_settings_sections;
 		$page = $_GET['page'];
 		$sections = $wp_settings_sections[$page];
+		$pluginData = get_plugin_data(WEB_SYSTEMS_CUSTOM_WOOCOMMERCE_CHECKOUT_PLUGIN_DIR_PATH . 'web-systems-custom-woocommerce-checkout.php');
 		?>
 		<div id="settings-container" class="wrap">
-			<h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
-			<h2 class="description"></h2>
+			<div class="information-container">
+				<div class="first-row">
+				<a href="<?php echo $pluginData['AuthorURI'];?>"><img src="<?php echo WEB_SYSTEMS_CUSTOM_WOOCOMMERCE_CHECKOUT_PLUGIN_DIR_URL . "assets/src/img/ws-logo.png"; ?>"></img></a>
+				<h1><?php echo __($pluginData['Name'], $pluginData['TextDomain']); ?></h1>
+				</div>
+				<div class="description"><p><?php echo __($pluginData['Description'], $pluginData['TextDomain']);  ?></p></div>
+			</div>
 			<div class="settings-tabs">
 			<?php
 				foreach($sections as $section){
@@ -437,9 +444,6 @@ class Checkout_Page_Settings {
 	 * }
 	 */
 	function render_section( array $args ) : void {
-		// echo "<pre>";
-		// var_dump($args);
-		// echo "</pre>";
 		?>
 		<div class="<?php echo $args['id'] ?>">
 		<p id="<?php echo esc_attr( $args['id'] ); ?>"><?php esc_html_e( '', 'checkout-page-settings' ); ?></p>
