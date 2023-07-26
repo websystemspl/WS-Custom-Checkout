@@ -2,7 +2,7 @@
  
 Contributors: Web Systems
 Tags: Your plugin tag
-Requires at least: 5.5
+Requires at least: 7.0
 Tested up to: 6.2.2
 Stable tag: 1.0
 License: GPLv2 or later
