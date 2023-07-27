@@ -107,7 +107,7 @@ class Checkout_Page_Settings {
 	function run() {
 		add_action( 'admin_init', [$this, 'settings_init'] );
 		add_action( 'admin_menu', [$this, 'options_page'] );
-        add_action('wp_head', [$this, 'addCustomStyles']);
+        add_action('woocommerce_after_checkout_form', [$this, 'addCustomStyles']);
 		add_action('admin_enqueue_scripts', [$this, 'admin_enqueue_scripts']);
 	}
 
@@ -202,7 +202,7 @@ class Checkout_Page_Settings {
 		}
 
 		// show error/update messages
-		settings_errors( 'wporg_messages' );
+		
 
 		global $wp_settings_sections;
 		$page = $_GET['page'];
@@ -210,6 +210,7 @@ class Checkout_Page_Settings {
 		$pluginData = get_plugin_data(WEB_SYSTEMS_CUSTOM_WOOCOMMERCE_CHECKOUT_PLUGIN_DIR_PATH . 'web-systems-custom-woocommerce-checkout.php');
 		?>
 		<div id="settings-container" class="wrap">
+			<div class="messages-box"><?php settings_errors( 'wporg_messages' ); ?></div>
 			<div class="information-container">
 				<div class="first-row">
 				<a href="<?php echo $pluginData['AuthorURI'];?>"><img src="<?php echo WEB_SYSTEMS_CUSTOM_WOOCOMMERCE_CHECKOUT_PLUGIN_DIR_URL . "assets/src/img/ws-logo.png"; ?>"></img></a>
