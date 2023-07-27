@@ -35,7 +35,6 @@ Simply deactivate and delete the plugin.
 2-Patern. screenshot-2.png
 3-Pattern. screenshot-3.png
 4-Patern. screenshot-4.png
-5-Pattern. screenshot-5.png
   
 == Changelog ==
 = 1.0 =
