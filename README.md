@@ -1,6 +1,4 @@
-=== Web Systems Custom Woocommerce Checkout Page ===
-
-Plugin Name:       Web Systems Custom Woocommerce Checkout Page
+Plugin Name:       WS Woocommerce Checkout
 Contributors:      Web Systems
 Tags:              Checkout
 Requires at least: 5.0
@@ -12,23 +10,25 @@ Update URI:        https://example.com/my-plugin/
 
 == Description ==
   
-A plugin to add shoppings steps on woocommerce checkout page.
-  
+This plugin adds shopping steps to the WooCommerce checkout page.
+
 == Installation ==
   
 1. Upload the plugin folder to your /wp-content/plugins/ folder.
-2. Go to the **Plugins** page and activate the plugin.
-3. Active shopping steps in plugin settings
+2. Go to the Plugins page and activate the plugin.
+3. Activate shopping steps in the plugin settings.
   
 == Frequently Asked Questions ==
   
 = How do I use this plugin? =
+To use this plugin, follow these steps:
+Set up the plugin on the settings page.
   
-Firstly you need to set up plugin in settings page. 
-  
-= How to uninstall the plugin? =
-  
-Simply deactivate and delete the plugin. 
+= How do I uninstall the plugin? =
+
+To uninstall the plugin:
+Deactivate the plugin.
+Delete the plugin.
   
 == Screenshots ==
 1-Pattern. screenshot-1.png

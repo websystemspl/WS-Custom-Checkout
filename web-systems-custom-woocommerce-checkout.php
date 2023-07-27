@@ -1,7 +1,7 @@
 <?php
 /*
- * Plugin Name:       Web Systems Custom Woocommerce Checkout Page
- * Text Domain:       web_systems_custom_woocommerce_checkout_plugin
+ * Plugin Name:       WS Woocommerce Checkout
+ * Text Domain:       ws_woocommerce_checkout_plugin
  * Description:       Tab-based checkout page layout.
  * Version:           1.0
  * Requires at least: 5.0
@@ -18,14 +18,14 @@ if ( ! defined( 'WPINC' ) ) {
 
 class CheckoutPlugin{
     function __construct(){
-        if ( !defined( 'WEB_SYSTEMS_CUSTOM_WOOCOMMERCE_CHECKOUT_PLUGIN_DIR_PATH' ) ) {
-            define( 'WEB_SYSTEMS_CUSTOM_WOOCOMMERCE_CHECKOUT_PLUGIN_DIR_PATH', plugin_dir_path( __FILE__ ) );
+        if ( !defined( 'WS_WOOCOMMERCE_CHECKOUT_PLUGIN_DIR_PATH' ) ) {
+            define( 'WS_WOOCOMMERCE_CHECKOUT_PLUGIN_DIR_PATH', plugin_dir_path( __FILE__ ) );
         }
         
-        if ( !defined( 'WEB_SYSTEMS_CUSTOM_WOOCOMMERCE_CHECKOUT_PLUGIN_DIR_URL' ) ) {
-            define( 'WEB_SYSTEMS_CUSTOM_WOOCOMMERCE_CHECKOUT_PLUGIN_DIR_URL', plugin_dir_url( __FILE__ ) );
+        if ( !defined( 'WS_WOOCOMMERCE_CHECKOUT_PLUGIN_DIR_URL' ) ) {
+            define( 'WS_WOOCOMMERCE_CHECKOUT_PLUGIN_DIR_URL', plugin_dir_url( __FILE__ ) );
         }
-        $this->run_web_systems_custom_woocommerce_checkout_plugin_manager();
+        $this->run_ws_woocommerce_checkout_plugin_manager();
     }
     function activate(){
     }
@@ -33,9 +33,9 @@ class CheckoutPlugin{
     }
     function unistall(){
     }
-    function run_web_systems_custom_woocommerce_checkout_plugin_manager() {
-        require_once WEB_SYSTEMS_CUSTOM_WOOCOMMERCE_CHECKOUT_PLUGIN_DIR_PATH . 'includes/class-plugin-manager.php';
-        $plugin_manager = new Web_Systems_Custom_Woocommerce_Checkout_Plugin_Manager();
+    function run_ws_woocommerce_checkout_plugin_manager() {
+        require_once WS_WOOCOMMERCE_CHECKOUT_PLUGIN_DIR_PATH . 'includes/class-plugin-manager.php';
+        $plugin_manager = new WS_Woocommerce_Checkout_Plugin_Manager();
         $plugin_manager->run();	 
     }
 }
