@@ -1,5 +1,4 @@
 <?php
- 
 defined( 'ABSPATH' ) || exit;
 class Web_Systems_Custom_Woocommerce_Checkout_Checkout_Manager {
     public function dispatch_hook_actions() {        
