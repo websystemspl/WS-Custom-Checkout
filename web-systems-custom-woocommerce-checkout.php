@@ -32,9 +32,7 @@ class CheckoutPlugin{
     function deactivate(){
     }
     function unistall(){
-
     }
-
     function run_web_systems_custom_woocommerce_checkout_plugin_manager() {
         require_once WEB_SYSTEMS_CUSTOM_WOOCOMMERCE_CHECKOUT_PLUGIN_DIR_PATH . 'includes/class-plugin-manager.php';
         $plugin_manager = new Web_Systems_Custom_Woocommerce_Checkout_Plugin_Manager();

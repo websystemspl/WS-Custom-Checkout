@@ -112,6 +112,3 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	</tfoot>
 </table>
-<!--
-<script src="<?php echo( WEB_SYSTEMS_CUSTOM_WOOCOMMERCE_CHECKOUT_PLUGIN_DIR_URL . 'checkout/js/shipping.js' ); ?>" type="text/javascript">
-	-->

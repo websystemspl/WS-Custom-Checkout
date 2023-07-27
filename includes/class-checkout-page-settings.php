@@ -203,7 +203,6 @@ class Checkout_Page_Settings {
 
 		// show error/update messages
 		
-
 		global $wp_settings_sections;
 		$page = $_GET['page'];
 		$sections = $wp_settings_sections[$page];
