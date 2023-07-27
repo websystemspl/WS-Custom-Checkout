@@ -1,6 +1,6 @@
 === Web Systems Custom WooCommerce Checkout Page ===
 
-Plugin Name: Web Systems Custom WooCommerce Checkout Page
+
 Contributors: Web Systems
 Tags: Checkout
 Requires at least: 5.0
@@ -9,6 +9,7 @@ Stable tag: 1.0
 License: GPL v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Update URI: https://example.com/my-plugin/
+
 
 == Description ==
 
