@@ -28,10 +28,8 @@ class CheckoutPlugin{
         $this->run_web_systems_custom_woocommerce_checkout_plugin_manager();
     }
     function activate(){
-        \flush_rewrite_rules();
     }
     function deactivate(){
-        \flush_rewrite_rules();
     }
     function unistall(){
 
