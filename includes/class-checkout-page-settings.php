@@ -117,8 +117,8 @@ class Checkout_Page_Settings {
 		
 		// If we get this far, it must be our screen
 		// Enqueue our assets
-		wp_enqueue_script('checkout-page-settings-js', WS_WOOCOMMERCE_CHECKOUT_PLUGIN_DIR_URL . 'assets/js/admin/sections.js', array(), null, true);
-		wp_enqueue_style('checkout-page-settings-style', WS_WOOCOMMERCE_CHECKOUT_PLUGIN_DIR_URL . 'assets/css/admin/sections.css');
+		wp_enqueue_script('checkout-page-settings-js', WS_WOO_CHECKOUT_PLUGIN_DIR_URL . 'assets/js/admin/sections.js', array(), null, true);
+		wp_enqueue_style('checkout-page-settings-style', WS_WOO_CHECKOUT_PLUGIN_DIR_URL . 'assets/css/admin/sections.css');
 	  }
 
 	/**
@@ -206,14 +206,14 @@ class Checkout_Page_Settings {
 		global $wp_settings_sections;
 		$page = $_GET['page'];
 		$sections = $wp_settings_sections[$page];
-		$pluginData = get_plugin_data(WS_WOOCOMMERCE_CHECKOUT_PLUGIN_DIR_PATH . 'web-systems-custom-woocommerce-checkout.php');
+		$pluginData = get_plugin_data(WS_WOO_CHECKOUT_PLUGIN_DIR_PATH . 'ws-woo-checkout.php');
 		?>
 		<div id="settings-container" class="wrap">
 			<div class="messages-box"><?php settings_errors( 'wporg_messages' ); ?></div>
 			<div class="information-container">
 				<div class="first-row">
-				<a href="<?php echo $pluginData['AuthorURI'];?>"><img src="<?php echo WS_WOOCOMMERCE_CHECKOUT_PLUGIN_DIR_URL . "assets/src/img/ws-logo.png"; ?>"></img></a>
-				<h1><?php echo __($pluginData['Name'], $pluginData['TextDomain']); ?></h1>
+				<a href="<?php echo $pluginData['AuthorURI'];?>"><img src="<?php echo WS_WOO_CHECKOUT_PLUGIN_DIR_URL . "assets/src/img/ws-logo.png"; ?>"></img></a>
+				<p><?php echo __($pluginData['Name'], $pluginData['TextDomain']); ?></p>
 				</div>
 				<div class="description"><p><?php echo __($pluginData['Description'], $pluginData['TextDomain']);  ?></p></div>
 			</div>
