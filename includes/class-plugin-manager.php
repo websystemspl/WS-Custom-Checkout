@@ -1,13 +1,13 @@
 <?php
 defined( 'ABSPATH' ) || exit;
-class WS_Woocommerce_Checkout_Plugin_Manager {
+class WS_Woo_Checkout_Plugin_Manager {
     private $_sections = ['checkout' ];
 
     private function initialise_templates_for_replacement_from_scandir() {
         $templates_for_replacement = [];
         foreach ( $this->_sections as $section ) {
             $templates_for_replacement[ $section ] = [];
-            foreach ( scandir( WS_WOOCOMMERCE_CHECKOUT_PLUGIN_DIR_PATH . "{$section}/templates/for_replacement" ) as $file_name ) {
+            foreach ( scandir( WS_WOO_CHECKOUT_PLUGIN_DIR_PATH . "{$section}/templates/for_replacement" ) as $file_name ) {
                 if( ! in_array( $file_name, [ '.', '..' ] ) ) {
                     $templates_for_replacement[ $section ][] = $file_name; 
                 }
@@ -24,7 +24,7 @@ class WS_Woocommerce_Checkout_Plugin_Manager {
 
 
     private function register_template_replacement_filter() {
-        require_once(  WS_WOOCOMMERCE_CHECKOUT_PLUGIN_DIR_PATH . 'includes/class-template-replacement-manager.php' );
+        require_once(  WS_WOO_CHECKOUT_PLUGIN_DIR_PATH . 'includes/class-template-replacement-manager.php' );
 
         $templates_for_replacement = $this->initialise_templates_for_replacement_from_scandir();
 
@@ -34,7 +34,7 @@ class WS_Woocommerce_Checkout_Plugin_Manager {
     }
 
     private function register_hooks() {
-        require_once(  WS_WOOCOMMERCE_CHECKOUT_PLUGIN_DIR_PATH . 'includes/class-hook-manager.php' );
+        require_once(  WS_WOO_CHECKOUT_PLUGIN_DIR_PATH . 'includes/class-hook-manager.php' );
 
         $hook_manager = new Web_Systems_Custom_Woocommerce_Checkout_Hook_Manager();
 
@@ -42,7 +42,7 @@ class WS_Woocommerce_Checkout_Plugin_Manager {
     }
 
     private function checkoutPageSetting() {
-        require_once(  WS_WOOCOMMERCE_CHECKOUT_PLUGIN_DIR_PATH . 'includes/class-checkout-page-settings.php' );
+        require_once(  WS_WOO_CHECKOUT_PLUGIN_DIR_PATH . 'includes/class-checkout-page-settings.php' );
         $checkout_Page_Settings = new Checkout_Page_Settings();
         $checkout_Page_Settings->run();
     }

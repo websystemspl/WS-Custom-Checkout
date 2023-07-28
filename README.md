@@ -1,4 +1,4 @@
-Plugin Name:       WS Woocommerce Checkout
+Plugin Name:       WS Woo Checkout
 Contributors:      Web Systems
 Tags:              Checkout
 Requires at least: 5.0
