@@ -36,6 +36,6 @@ Delete the plugin.
 3-Pattern. screenshot-3.png  
 4-Patern. screenshot-4.png  
   
-== Changelog ==
-= 1.0 =
+== Changelog ==  
+= 1.0 =  
 * Plugin released. 
