@@ -20,8 +20,8 @@ This plugin adds shopping steps to the WooCommerce checkout page.
   
 == Frequently Asked Questions ==
   
-= How do I use this plugin? =
-To use this plugin, follow these steps:
+= How do I use this plugin? =  
+To use this plugin, follow these steps:  
 Set up the plugin on the settings page.
   
 = How do I uninstall the plugin? =
@@ -30,11 +30,11 @@ To uninstall the plugin:
 Deactivate the plugin.
 Delete the plugin.
   
-== Screenshots ==
-1-Pattern. screenshot-1.png
-2-Patern. screenshot-2.png
-3-Pattern. screenshot-3.png
-4-Patern. screenshot-4.png
+== Screenshots ==  
+1-Pattern. screenshot-1.png  
+2-Patern. screenshot-2.png  
+3-Pattern. screenshot-3.png  
+4-Patern. screenshot-4.png  
   
 == Changelog ==
 = 1.0 =
