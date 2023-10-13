@@ -1,6 +1,6 @@
 <?php
 /*
- * Plugin Name:       WS Custom Chekout
+ * Plugin Name:       WS Custom Checkout
  * Text Domain:       ws_custom_checkout
  * Description:       Tab-based checkout page layout.
  * Version:           1.0
