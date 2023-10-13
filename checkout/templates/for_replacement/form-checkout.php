@@ -23,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 function generate_section_change_button_html( $target_section_number, $section, $direction ) {
 	//$button_inner_html = esc_html__( "Go to {$section[ 'label' ]}", 'woocommerce' );
-  $button_inner_html = sprintf(__( "Go to %s", 'ws_woo_checkout_plugin' ), $section['label']);
+  $button_inner_html = sprintf(__( "Go to %s", 'ws_custom_checkout' ), $section['label']);
 	if( 'next' == $direction ) {
 		$button_inner_html .= '&nbsp;&rarr;';
 		$this_section_number = $target_section_number - 1;
@@ -35,7 +35,7 @@ function generate_section_change_button_html( $target_section_number, $section, 
 }
 
 
-$sections = [ [ 'name' => 'cart', 'label' => esc_html__( 'Cart', 'woocommerce' ) ], [ 'name' => 'info', 'label' => esc_html__( 'Information', 'ws_woo_checkout_plugin' ) ], [ 'name' => 'shipping', 'label' => esc_html__( 'Shipping', 'woocommerce' ) ], [ 'name' => 'payment', 'label' => esc_html__( 'Payment', 'woocommerce' ) ], [ 'name' => 'complete', 'label' => esc_html__( 'Complete', 'ws_woo_checkout_plugin' )] ]; 
+$sections = [ [ 'name' => 'cart', 'label' => esc_html__( 'Cart', 'woocommerce' ) ], [ 'name' => 'info', 'label' => esc_html__( 'Information', 'ws_custom_checkout' ) ], [ 'name' => 'shipping', 'label' => esc_html__( 'Shipping', 'woocommerce' ) ], [ 'name' => 'payment', 'label' => esc_html__( 'Payment', 'woocommerce' ) ], [ 'name' => 'complete', 'label' => esc_html__( 'Complete', 'ws_custom_checkout' )] ]; 
 $counter_for_preserving_section_names = 1;
 
 

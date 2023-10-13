@@ -1,7 +1,7 @@
 <?php
 /*
- * Plugin Name:       WS Woo Checkout
- * Text Domain:       ws_woo_checkout_plugin
+ * Plugin Name:       WS Custom Chekout
+ * Text Domain:       ws_custom_checkout
  * Description:       Tab-based checkout page layout.
  * Version:           1.0
  * Requires at least: 5.0
@@ -18,14 +18,14 @@ if ( ! defined( 'WPINC' ) ) {
 
 class CheckoutPlugin{
     function __construct(){
-        if ( !defined( 'WS_WOO_CHECKOUT_PLUGIN_DIR_PATH' ) ) {
-            define( 'WS_WOO_CHECKOUT_PLUGIN_DIR_PATH', plugin_dir_path( __FILE__ ) );
+        if ( !defined( 'WS_CUSTOM_CHECKOUT_PLUGIN_DIR_PATH' ) ) {
+            define( 'WS_CUSTOM_CHECKOUT_PLUGIN_DIR_PATH', plugin_dir_path( __FILE__ ) );
         }
         
-        if ( !defined( 'WS_WOO_CHECKOUT_PLUGIN_DIR_URL' ) ) {
-            define( 'WS_WOO_CHECKOUT_PLUGIN_DIR_URL', plugin_dir_url( __FILE__ ) );
+        if ( !defined( 'WS_CUSTOM_CHECKOUT_PLUGIN_DIR_URL' ) ) {
+            define( 'WS_CUSTOM_CHECKOUT_PLUGIN_DIR_URL', plugin_dir_url( __FILE__ ) );
         }
-        $this->run_ws_woo_checkout_plugin_manager();
+        $this->run_ws_custom_checkout_manager();
     }
     function activate(){
     }
@@ -33,8 +33,8 @@ class CheckoutPlugin{
     }
     function unistall(){
     }
-    function run_ws_woo_checkout_plugin_manager() {
-        require_once WS_WOO_CHECKOUT_PLUGIN_DIR_PATH . 'includes/class-plugin-manager.php';
+    function run_ws_custom_checkout_manager() {
+        require_once WS_CUSTOM_CHECKOUT_PLUGIN_DIR_PATH . 'includes/class-plugin-manager.php';
         $plugin_manager = new WS_Woo_Checkout_Plugin_Manager();
         $plugin_manager->run();	 
     }
