@@ -10,7 +10,7 @@ Update URI:        https://example.com/my-plugin/
 
 == Description ==
   
-This plugin adds shopping steps to the WooCommerce checkout page.
+This plugin adds shopping steps to the checkout page.
 
 == Installation ==
   

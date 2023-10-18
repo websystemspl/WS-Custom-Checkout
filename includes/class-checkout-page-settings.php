@@ -1,10 +1,12 @@
 <?php
+
 /**
  * Class Checkout_Page_Settings
  *
  * Configure the plugin settings page.
  */
-class Checkout_Page_Settings {
+class Checkout_Page_Settings
+{
 
 	/**
 	 * Capability required by the user to access the My Plugin menu entry.
@@ -19,24 +21,26 @@ class Checkout_Page_Settings {
 	 * @var array $fields
 	 */
 
-	private $generalFields = [		[
-		'id' => 'active',
-		'label' => 'Active',
-		'description' => '',
-		'type' => 'checkbox',
-	],
-	[
-		'id' => 'banner-background-color',
-		'label' => 'Banner Background Color',
-		'description' => '',
-		'type' => 'color',
-	],
-	[
-		'id' => 'active-step-color',
-		'label' => 'Active Step Color',
-		'description' => '',
-		'type' => 'color',
-	]];
+	private $generalFields = [
+		[
+			'id' => 'active',
+			'label' => 'Active',
+			'description' => '',
+			'type' => 'checkbox',
+		],
+		[
+			'id' => 'banner-background-color',
+			'label' => 'Banner Background Color',
+			'description' => '',
+			'type' => 'color',
+		],
+		[
+			'id' => 'active-step-color',
+			'label' => 'Active Step Color',
+			'description' => '',
+			'type' => 'color',
+		]
+	];
 
 	private $fields = [
 		[
@@ -51,7 +55,7 @@ class Checkout_Page_Settings {
 			'description' => '',
 			'type' => 'color',
 		],
-        [
+		[
 			'id' => 'buttons-background-color',
 			'label' => 'Buttons background color',
 			'description' => '',
@@ -104,57 +108,61 @@ class Checkout_Page_Settings {
 	/**
 	 * The Plugin Settings constructor.
 	 */
-	function run() {
-		add_action( 'admin_init', [$this, 'settings_init'] );
-		add_action( 'admin_menu', [$this, 'options_page'] );
-        add_action('woocommerce_after_checkout_form', [$this, 'addCustomStyles']);
+	function run()
+	{
+		add_action('admin_init', [$this, 'settings_init']);
+		add_action('admin_menu', [$this, 'options_page']);
+		add_action('woocommerce_after_checkout_form', [$this, 'addCustomStyles']);
 		add_action('admin_enqueue_scripts', [$this, 'admin_enqueue_scripts']);
 	}
 
-	public function admin_enqueue_scripts($screen) {
+	public function admin_enqueue_scripts($screen)
+	{
 		// Quit if it's not our screen
-		if('toplevel_page_checkout-page-settings' !== $screen) return;
-		
+		if ('toplevel_page_checkout-page-settings' !== $screen) return;
+
 		// If we get this far, it must be our screen
 		// Enqueue our assets
 		wp_enqueue_script('checkout-page-settings-js', WS_CUSTOM_CHECKOUT_PLUGIN_DIR_URL . 'assets/js/admin/sections.js', array(), null, true);
 		wp_enqueue_style('checkout-page-settings-style', WS_CUSTOM_CHECKOUT_PLUGIN_DIR_URL . 'assets/css/admin/sections.css');
-	  }
+	}
 
 	/**
 	 * Register the settings and all fields.
 	 */
-	function settings_init() : void {
+	function settings_init(): void
+	{
 
 		// Register a new setting this page.
-		register_setting( 'checkout-page-settings', 'wporg_options' );
+		register_setting('checkout-page-settings', 'wporg_options');
 
 		// Register a new section.
 		add_settings_section(
 			'checkout-page-general-section',
-			__( 'General', 'checkout-page-settings' ),
+			__('General', 'checkout-page-settings'),
 			[$this, 'render_section'],
 			'checkout-page-settings'
 		);
 		add_settings_section(
 			'checkout-page-buttons-section',
-			__( 'Buttons', 'checkout-page-settings' ),
+			__('Buttons', 'checkout-page-settings'),
 			[$this, 'render_section'],
 			'checkout-page-settings'
 		);
 
 
 		/* Register All The Fields. */
-		$this->addSettingFields($this->generalFields, [$this, 'render_field'], 'checkout-page-settings', 'checkout-page-general-section' );
-		$this->addSettingFields($this->fields, [$this, 'render_field'], 'checkout-page-settings', 'checkout-page-buttons-section' );
+		$this->addSettingFields($this->generalFields, [$this, 'render_field'], 'checkout-page-settings', 'checkout-page-general-section');
+		$this->addSettingFields($this->fields, [$this, 'render_field'], 'checkout-page-settings', 'checkout-page-buttons-section');
 	}
 
-	function addSettingFields($fields, $callback, $manuPage, $section){
-		foreach( $fields as $field ) {
+	function addSettingFields($fields, $callback, $manuPage, $section)
+	{
+		foreach ($fields as $field) {
 			// Register a new field in the main section.
 			add_settings_field(
 				$field['id'], /* ID for the field. Only used internally. To set the HTML ID attribute, use $args['label_for']. */
-				__( $field['label'], $manuPage ), /* Label for the field. */
+				__($field['label'], $manuPage), /* Label for the field. */
 				$callback, /* The name of the callback function. */
 				$manuPage, /* The menu page on which to display this field. */
 				$section, /* The section of the settings page in which to show the box. */
@@ -170,7 +178,8 @@ class Checkout_Page_Settings {
 	/**
 	 * Add a subpage to the WordPress Settings menu.
 	 */
-	function options_page() : void {
+	function options_page(): void
+	{
 		add_menu_page(
 			'Settings', /* Page Title */
 			'Checkout Page', /* Menu Title */
@@ -185,10 +194,11 @@ class Checkout_Page_Settings {
 	/**
 	 * Render the settings page.
 	 */
-	function render_options_page() : void {
+	function render_options_page(): void
+	{
 
 		// check user capabilities
-		if ( ! current_user_can( $this->capability ) ) {
+		if (!current_user_can($this->capability)) {
 			return;
 		}
 
@@ -196,49 +206,51 @@ class Checkout_Page_Settings {
 
 		// check if the user have submitted the settings
 		// WordPress will add the "settings-updated" $_GET parameter to the url
-		if ( isset( $_GET['settings-updated'] ) ) {
+		if (isset($_GET['settings-updated'])) {
 			// add settings saved message with the class of "updated"
-			add_settings_error( 'wporg_messages', 'wporg_message', __( 'Settings Saved', 'checkout-page-settings' ), 'updated' );
+			add_settings_error('wporg_messages', 'wporg_message', __('Settings Saved', 'checkout-page-settings'), 'updated');
 		}
 
 		// show error/update messages
-		
+
 		global $wp_settings_sections;
 		$page = $_GET['page'];
 		$sections = $wp_settings_sections[$page];
 		$pluginData = get_plugin_data(WS_CUSTOM_CHECKOUT_PLUGIN_DIR_PATH . 'ws-custom-checkout.php');
-		?>
+?>
 		<div id="settings-container" class="wrap">
-			<div class="messages-box"><?php settings_errors( 'wporg_messages' ); ?></div>
+			<div class="messages-box"><?php settings_errors('wporg_messages'); ?></div>
 			<div class="information-container">
 				<div class="first-row">
-				<a href="<?php echo $pluginData['AuthorURI'];?>"><img src="<?php echo WS_CUSTOM_CHECKOUT_PLUGIN_DIR_URL . "assets/src/img/ws-logo.png"; ?>"></img></a>
-				<p><?php echo __($pluginData['Name'], $pluginData['TextDomain']); ?></p>
+					<a href="<?php echo $pluginData['AuthorURI']; ?>"><img width="100px" height="100px" src="<?php echo WS_CUSTOM_CHECKOUT_PLUGIN_DIR_URL . "assets/src/img/k4-logo.png"; ?>"></img></a>
+					<p><?php echo __($pluginData['Name'], $pluginData['TextDomain']); ?></p>
 				</div>
-				<div class="description"><p><?php echo __($pluginData['Description'], $pluginData['TextDomain']);  ?></p></div>
+				<div class="description">
+					<p><?php echo __($pluginData['Description'], $pluginData['TextDomain']);  ?></p>
+				</div>
 			</div>
 			<div class="settings-tabs">
-			<?php
-				foreach($sections as $section){
-					?>
+				<?php
+				foreach ($sections as $section) {
+				?>
 					<a href="<?php echo "#" . $section["id"]; ?>"><?php echo $section["title"]; ?></a>
-					<?php
+				<?php
 				}
-			?>
-		</div>
+				?>
+			</div>
 			<form action="options.php" method="post">
 				<?php
 				/* output security fields for the registered setting "wporg" */
-				settings_fields( 'checkout-page-settings' );
+				settings_fields('checkout-page-settings');
 				/* output setting sections and their fields */
 				/* (sections are registered for "wporg", each field is registered to a specific section) */
-				
-			?>
-				<div id="checkout-page-general-section" class="active"><?php do_settings_fields( 'checkout-page-settings',  'checkout-page-general-section'); ?></div>
-				<div id="checkout-page-buttons-section"><?php do_settings_fields( 'checkout-page-settings',  'checkout-page-buttons-section'); ?></div>
-<?php
+
+				?>
+				<div id="checkout-page-general-section" class="active"><?php do_settings_fields('checkout-page-settings',  'checkout-page-general-section'); ?></div>
+				<div id="checkout-page-buttons-section"><?php do_settings_fields('checkout-page-settings',  'checkout-page-buttons-section'); ?></div>
+				<?php
 				/* output save settings button */
-				submit_button( 'Save Settings' );
+				submit_button('Save Settings');
 				?>
 			</form>
 		</div>
@@ -250,184 +262,133 @@ class Checkout_Page_Settings {
 	 *
 	 * @param array $args Args to configure the field.
 	 */
-	function render_field( array $args ) : void {
+	function render_field(array $args): void
+	{
 
 
 		$field = $args['field'];
 
 		// Get the value of the setting we've registered with register_setting()
-		$options = get_option( 'wporg_options' );
+		$options = get_option('wporg_options');
 
-		switch ( $field['type'] ) {
+		switch ($field['type']) {
 
 			case "text": {
-				?>
-				<input
-					type="text"
-					id="<?php echo esc_attr( $field['id'] ); ?>"
-					name="wporg_options[<?php echo esc_attr( $field['id'] ); ?>]"
-					value="<?php echo isset( $options[ $field['id'] ] ) ? esc_attr( $options[ $field['id'] ] ) : ''; ?>"
-				>
-				<p class="description">
-					<?php esc_html_e( $field['description'], 'checkout-page-settings' ); ?>
-				</p>
+		?>
+					<input type="text" id="<?php echo esc_attr($field['id']); ?>" name="wporg_options[<?php echo esc_attr($field['id']); ?>]" value="<?php echo isset($options[$field['id']]) ? esc_attr($options[$field['id']]) : ''; ?>">
+					<p class="description">
+						<?php esc_html_e($field['description'], 'checkout-page-settings'); ?>
+					</p>
 				<?php
-				break;
-			}
+					break;
+				}
 
 			case "checkbox": {
 				?>
-				<input
-					type="checkbox"
-					id="<?php echo esc_attr( $field['id'] ); ?>"
-					name="wporg_options[<?php echo esc_attr( $field['id'] ); ?>]"
-					value="1"
-					<?php echo isset( $options[ $field['id'] ] ) ? ( checked( $options[ $field['id'] ], 1, false ) ) : ( '' ); ?>
-				>
-				<p class="description">
-					<?php esc_html_e( $field['description'], 'checkout-page-settings' ); ?>
-				</p>
+					<input type="checkbox" id="<?php echo esc_attr($field['id']); ?>" name="wporg_options[<?php echo esc_attr($field['id']); ?>]" value="1" <?php echo isset($options[$field['id']]) ? (checked($options[$field['id']], 1, false)) : (''); ?>>
+					<p class="description">
+						<?php esc_html_e($field['description'], 'checkout-page-settings'); ?>
+					</p>
 				<?php
-				break;
-			}
+					break;
+				}
 
 			case "textarea": {
 				?>
-				<textarea
-					id="<?php echo esc_attr( $field['id'] ); ?>"
-					name="wporg_options[<?php echo esc_attr( $field['id'] ); ?>]"
-				><?php echo isset( $options[ $field['id'] ] ) ? esc_attr( $options[ $field['id'] ] ) : ''; ?></textarea>
-				<p class="description">
-					<?php esc_html_e( $field['description'], 'checkout-page-settings' ); ?>
-				</p>
+					<textarea id="<?php echo esc_attr($field['id']); ?>" name="wporg_options[<?php echo esc_attr($field['id']); ?>]"><?php echo isset($options[$field['id']]) ? esc_attr($options[$field['id']]) : ''; ?></textarea>
+					<p class="description">
+						<?php esc_html_e($field['description'], 'checkout-page-settings'); ?>
+					</p>
 				<?php
-				break;
-			}
+					break;
+				}
 
 			case "select": {
 				?>
-				<select
-					id="<?php echo esc_attr( $field['id'] ); ?>"
-					name="wporg_options[<?php echo esc_attr( $field['id'] ); ?>]"
-				>
-					<?php foreach( $field['options'] as $key => $option ) { ?>
-						<option value="<?php echo $key; ?>" 
-							<?php echo isset( $options[ $field['id'] ] ) ? ( selected( $options[ $field['id'] ], $key, false ) ) : ( '' ); ?>
-						>
-							<?php echo $option; ?>
-						</option>
-					<?php } ?>
-				</select>
-				<p class="description">
-					<?php esc_html_e( $field['description'], 'checkout-page-settings' ); ?>
-				</p>
+					<select id="<?php echo esc_attr($field['id']); ?>" name="wporg_options[<?php echo esc_attr($field['id']); ?>]">
+						<?php foreach ($field['options'] as $key => $option) { ?>
+							<option value="<?php echo $key; ?>" <?php echo isset($options[$field['id']]) ? (selected($options[$field['id']], $key, false)) : (''); ?>>
+								<?php echo $option; ?>
+							</option>
+						<?php } ?>
+					</select>
+					<p class="description">
+						<?php esc_html_e($field['description'], 'checkout-page-settings'); ?>
+					</p>
 				<?php
-				break;
-			}
+					break;
+				}
 
 			case "password": {
 				?>
-				<input
-					type="password"
-					id="<?php echo esc_attr( $field['id'] ); ?>"
-					name="wporg_options[<?php echo esc_attr( $field['id'] ); ?>]"
-					value="<?php echo isset( $options[ $field['id'] ] ) ? esc_attr( $options[ $field['id'] ] ) : ''; ?>"
-				>
-				<p class="description">
-					<?php esc_html_e( $field['description'], 'checkout-page-settings' ); ?>
-				</p>
+					<input type="password" id="<?php echo esc_attr($field['id']); ?>" name="wporg_options[<?php echo esc_attr($field['id']); ?>]" value="<?php echo isset($options[$field['id']]) ? esc_attr($options[$field['id']]) : ''; ?>">
+					<p class="description">
+						<?php esc_html_e($field['description'], 'checkout-page-settings'); ?>
+					</p>
 				<?php
-				break;
-			}
+					break;
+				}
 
 			case "wysiwyg": {
-				wp_editor(
-					isset( $options[ $field['id'] ] ) ? $options[ $field['id'] ] : '',
-					$field['id'],
-					array(
-						'textarea_name' => 'wporg_options[' . $field['id'] . ']',
-						'textarea_rows' => 5,
-					)
-				);
-				break;
-			}
+					wp_editor(
+						isset($options[$field['id']]) ? $options[$field['id']] : '',
+						$field['id'],
+						array(
+							'textarea_name' => 'wporg_options[' . $field['id'] . ']',
+							'textarea_rows' => 5,
+						)
+					);
+					break;
+				}
 
 			case "email": {
 				?>
-				<input
-					type="email"
-					id="<?php echo esc_attr( $field['id'] ); ?>"
-					name="wporg_options[<?php echo esc_attr( $field['id'] ); ?>]"
-					value="<?php echo isset( $options[ $field['id'] ] ) ? esc_attr( $options[ $field['id'] ] ) : ''; ?>"
-				>
-				<p class="description">
-					<?php esc_html_e( $field['description'], 'checkout-page-settings' ); ?>
-				</p>
+					<input type="email" id="<?php echo esc_attr($field['id']); ?>" name="wporg_options[<?php echo esc_attr($field['id']); ?>]" value="<?php echo isset($options[$field['id']]) ? esc_attr($options[$field['id']]) : ''; ?>">
+					<p class="description">
+						<?php esc_html_e($field['description'], 'checkout-page-settings'); ?>
+					</p>
 				<?php
-				break;
-			}
+					break;
+				}
 
 			case "url": {
 				?>
-				<input
-					type="url"
-					id="<?php echo esc_attr( $field['id'] ); ?>"
-					name="wporg_options[<?php echo esc_attr( $field['id'] ); ?>]"
-					value="<?php echo isset( $options[ $field['id'] ] ) ? esc_attr( $options[ $field['id'] ] ) : ''; ?>"
-				>
-				<p class="description">
-					<?php esc_html_e( $field['description'], 'checkout-page-settings' ); ?>
-				</p>
+					<input type="url" id="<?php echo esc_attr($field['id']); ?>" name="wporg_options[<?php echo esc_attr($field['id']); ?>]" value="<?php echo isset($options[$field['id']]) ? esc_attr($options[$field['id']]) : ''; ?>">
+					<p class="description">
+						<?php esc_html_e($field['description'], 'checkout-page-settings'); ?>
+					</p>
 				<?php
-				break;
-			}
+					break;
+				}
 
 			case "color": {
 				?>
-				<input
-					type="color"
-					id="<?php echo esc_attr( $field['id'] ); ?>"
-					name="wporg_options[<?php echo esc_attr( $field['id'] ); ?>]"
-					value="<?php echo isset( $options[ $field['id'] ] ) ? esc_attr( $options[ $field['id'] ] ) : ''; ?>"
-				>
-				<p class="description">
-					<?php esc_html_e( $field['description'], 'checkout-page-settings' ); ?>
-				</p>
+					<input type="color" id="<?php echo esc_attr($field['id']); ?>" name="wporg_options[<?php echo esc_attr($field['id']); ?>]" value="<?php echo isset($options[$field['id']]) ? esc_attr($options[$field['id']]) : ''; ?>">
+					<p class="description">
+						<?php esc_html_e($field['description'], 'checkout-page-settings'); ?>
+					</p>
 				<?php
-				break;
-			}
+					break;
+				}
 
 			case "date": {
 				?>
-				<input
-					type="date"
-					id="<?php echo esc_attr( $field['id'] ); ?>"
-					name="wporg_options[<?php echo esc_attr( $field['id'] ); ?>]"
-					value="<?php echo isset( $options[ $field['id'] ] ) ? esc_attr( $options[ $field['id'] ] ) : ''; ?>"
-				>
-				<p class="description">
-					<?php esc_html_e( $field['description'], 'checkout-page-settings' ); ?>
-				</p>
+					<input type="date" id="<?php echo esc_attr($field['id']); ?>" name="wporg_options[<?php echo esc_attr($field['id']); ?>]" value="<?php echo isset($options[$field['id']]) ? esc_attr($options[$field['id']]) : ''; ?>">
+					<p class="description">
+						<?php esc_html_e($field['description'], 'checkout-page-settings'); ?>
+					</p>
 				<?php
-				break;
-			}
+					break;
+				}
 			case "number": {
 				?>
-				<input
-					type="number"
-					id="<?php echo esc_attr( $field['id'] ); ?>"
-					name="wporg_options[<?php echo esc_attr( $field['id'] ); ?>]"
-					value="<?php echo isset( $options[ $field['id'] ] ) ? esc_attr( $options[ $field['id'] ] ) : ''; ?>"
-					min="0"
-					max="100"
-				>
-				<p class="description">
-					<?php esc_html_e( $field['description'], 'checkout-page-settings' ); ?>
-				</p>
-				<?php
-				break;
-			}
-
+					<input type="number" id="<?php echo esc_attr($field['id']); ?>" name="wporg_options[<?php echo esc_attr($field['id']); ?>]" value="<?php echo isset($options[$field['id']]) ? esc_attr($options[$field['id']]) : ''; ?>" min="0" max="100">
+					<p class="description">
+						<?php esc_html_e($field['description'], 'checkout-page-settings'); ?>
+					</p>
+		<?php
+					break;
+				}
 		}
 	}
 
@@ -443,42 +404,44 @@ class Checkout_Page_Settings {
 	 *     @type string $id The ID of the section.
 	 * }
 	 */
-	function render_section( array $args ) : void {
+	function render_section(array $args): void
+	{
 		?>
 		<div class="<?php echo $args['id'] ?>">
-		<p id="<?php echo esc_attr( $args['id'] ); ?>"><?php esc_html_e( '', 'checkout-page-settings' ); ?></p>
+			<p id="<?php echo esc_attr($args['id']); ?>"><?php esc_html_e('', 'checkout-page-settings'); ?></p>
 		</div>
 
-		<?php
+<?php
 	}
 
-    function addCustomStyles(){
-        $options = get_option( 'wporg_options' );
-        $bannerColor = $options['banner-background-color'];
-        $currentStepColor = $options['active-step-color'];
-        $buttonsBackgroundColor = $options['buttons-background-color'];
+	function addCustomStyles()
+	{
+		$options = get_option('wporg_options');
+		$bannerColor = $options['banner-background-color'];
+		$currentStepColor = $options['active-step-color'];
+		$buttonsBackgroundColor = $options['buttons-background-color'];
 		$buttonsFontSize = $options['buttons-font-size'];
-        $buttonsTextColor = $options['buttons-text-color'];
+		$buttonsTextColor = $options['buttons-text-color'];
 		$buttonsBorderColor = $options['buttons-border-color'];
 		$buttonsBorderSize = $options['buttons-border-size'];
 		$buttonsPadding = $options['buttons-padding'];
 		$buttonsBorderRadius = $options['buttons-border-radius'];
 		$buttonsOpacityValue = $options['buttons-opacity-value'];
 		$buttonsOpacityBackgroundColor = $options['buttons-background-color-hover'];
-		
-        $active = "";
-        if(!isset($options['active'])){
-            $active = "#custom-checkout-page-section-button-containers-container{display:none !important}";
-        }
+
+		$active = "";
+		if (!isset($options['active'])) {
+			$active = "#custom-checkout-page-section-button-containers-container{display:none !important}";
+		}
 		$border = "border:none !important";
-        if(isset($options['active'])){
-			if($buttonsBorderSize){
+		if (isset($options['active'])) {
+			if ($buttonsBorderSize) {
 				$border = "border:solid " . $buttonsBorderSize . "px";
-			}else{
+			} else {
 				$border = "border:solid 1px";
 			}
-        }
-        $custom_css = "" . $active . "
+		}
+		$custom_css = "" . $active . "
         #custom-checkout-page-section-button-containers-container {
                 background-color: {$bannerColor};
         }
@@ -498,7 +461,7 @@ class Checkout_Page_Settings {
 			opacity: {$buttonsOpacityValue};
 			background-color: {$buttonsOpacityBackgroundColor};
 		}";
-        
-        echo "<style>" . $custom_css . "</style>";
-    }
+
+		echo "<style>" . $custom_css . "</style>";
+	}
 }
