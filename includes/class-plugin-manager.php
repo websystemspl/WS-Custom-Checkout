@@ -1,6 +1,6 @@
 <?php
 defined('ABSPATH') || exit;
-class WS_Custom_Checkout_Plugin_Manager
+class WSCCP_Plugin_Manager
 {
     private $_sections = ['checkout'];
 
@@ -32,7 +32,7 @@ class WS_Custom_Checkout_Plugin_Manager
 
         $templates_for_replacement = $this->initialise_templates_for_replacement_from_scandir();
 
-        $template_replacement_manager = new Web_Systems_Custom_Woocommerce_Checkout_Template_Replacement_Manager($templates_for_replacement);
+        $template_replacement_manager = new WSCCP_Checkout_Template_Replacement_Manager($templates_for_replacement);
 
         add_filter('woocommerce_locate_template', [$template_replacement_manager, 'replace_template'], 20, 2);
     }
@@ -41,7 +41,7 @@ class WS_Custom_Checkout_Plugin_Manager
     {
         require_once(WS_CUSTOM_CHECKOUT_PLUGIN_DIR_PATH . 'includes/class-hook-manager.php');
 
-        $hook_manager = new Web_Systems_Custom_Woocommerce_Checkout_Hook_Manager();
+        $hook_manager = new WSCCP_Checkout_Hook_Manager();
 
         $hook_manager->run();
     }
@@ -49,7 +49,7 @@ class WS_Custom_Checkout_Plugin_Manager
     private function checkoutPageSetting()
     {
         require_once(WS_CUSTOM_CHECKOUT_PLUGIN_DIR_PATH . 'includes/class-checkout-page-settings.php');
-        $checkout_Page_Settings = new Checkout_Page_Settings();
-        $checkout_Page_Settings->run();
+        $checkout_page_settings = new WSCCP_Page_Settings();
+        $checkout_page_settings->run();
     }
 }

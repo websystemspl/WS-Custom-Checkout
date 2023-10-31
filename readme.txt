@@ -1,13 +1,13 @@
-Plugin Name:       WS Custom Checkout  
+=== WS Custom Checkout ===
+Plugin Name:       WS Custom Checkout
 Contributors:      websystems2006
-Tags:              Checkout  
-Requires at least: 5.0  
-Tested up to:      6.2.2  
+Tags:              checkout
+Requires at least: 5.0
+Tested up to:      6.2.2
 Requires PHP:      7.0
-Stable tag:        1.0  
-License:           GPL v2 or later  
-License URI:       https://www.gnu.org/licenses/gpl-2.0.html  
-Update URI:        https://example.com/my-plugin/  
+Stable tag:        1.0
+License:           GPLv3
+License URI:       https://www.gnu.org/licenses/gpl-3.0.html
 
 == Description ==
   
@@ -33,13 +33,17 @@ Delete the plugin.
   
 == Screenshots ==  
 
-1-screenshot-1.png  
-2-screenshot-2.png  
-3-screenshot-3.png  
-4-screenshot-4.png  
+1. src/img/screenshot-1.png  
+2. src/img/screenshot-2.png  
+3. src/img/screenshot-3.png  
+4. src/img/screenshot-4.png  
   
 == Changelog == 
 
+= 1.0 =  
+* Plugin released. 
+
 ==  Upgrade Notice ==  
+
 = 1.0 =  
 * Plugin released. 
