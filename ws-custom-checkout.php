@@ -23,8 +23,8 @@ if (!defined('WS_CUSTOM_CHECKOUT_PLUGIN_DIR_URL')) {
     define('WS_CUSTOM_CHECKOUT_PLUGIN_DIR_URL', plugin_dir_url(__FILE__));
 }
 
-if (!class_exists('WS_Custom_Checkout_Plugin_Manager')) {
+if (!class_exists('WSCCP_Plugin_Manager')) {
     require_once WS_CUSTOM_CHECKOUT_PLUGIN_DIR_PATH . 'includes/class-plugin-manager.php';
-    $plugin_manager = new WS_Custom_Checkout_Plugin_Manager();
+    $plugin_manager = new WSCCP_Plugin_Manager();
     $plugin_manager->run();
 }

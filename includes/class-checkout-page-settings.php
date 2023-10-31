@@ -1,11 +1,11 @@
 <?php
 
 /**
- * Class WS_Custom_Checkout_Page_Settings
+ * Class WSCCP_Page_Settings
  *
  * Configure the plugin settings page.
  */
-class WS_Custom_Checkout_Page_Settings
+class WSCCP_Page_Settings
 {
 
 	/**

@@ -1,6 +1,6 @@
 <?php
 defined( 'ABSPATH' ) || exit;
-class Web_Systems_Custom_Woocommerce_Checkout_Template_Replacement_Manager {
+class WSCCP_Checkout_Template_Replacement_Manager {
     private function get_templates_for_replacement_path( string $templates_for_replacement_section, string $template_for_replacement ): string {
         return WS_CUSTOM_CHECKOUT_PLUGIN_DIR_PATH . "{$templates_for_replacement_section}/templates/for_replacement/{$template_for_replacement}";
     }

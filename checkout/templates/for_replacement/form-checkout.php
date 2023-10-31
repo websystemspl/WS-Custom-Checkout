@@ -94,7 +94,7 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
                         ?>
 						<?php
                         $target_section_number = $counter_for_preserving_section_names + 1;
-                        $section_label = $sections[ $counter_for_preserving_section_names + 1 ];
+                        $section_label = $sections[ $counter_for_preserving_section_names + 1 ]['label'];
                         $direction = 'next';
                         $button_inner_html = sprintf(esc_html__( "Go to %s", 'ws-custom-checkout' ), esc_html($section_label));
                         if( 'next' == $direction ) {
@@ -130,7 +130,7 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
 					<div class="section-change-buttons-container">
 						<?php
                         $target_section_number = $counter_for_preserving_section_names - 1;
-                        $section_label = $sections[ $counter_for_preserving_section_names - 1 ];
+                        $section_label = $sections[ $counter_for_preserving_section_names - 1 ]['label'];
                         $direction = 'previous';
                         $button_inner_html = sprintf(esc_html__( "Go to %s", 'ws-custom-checkout' ), esc_html($section_label));
                         if( 'next' == $direction ) {
@@ -144,7 +144,7 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
                         ?>
 						<?php
                         $target_section_number = $counter_for_preserving_section_names + 1;
-                        $section_label = $sections[ $counter_for_preserving_section_names + 1 ];
+                        $section_label = $sections[ $counter_for_preserving_section_names + 1 ]['label'];
                         $direction = 'next';
                         $button_inner_html = sprintf(esc_html__( "Go to %s", 'ws-custom-checkout' ), esc_html($section_label));
                         if( 'next' == $direction ) {
@@ -169,7 +169,7 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
 					<div class="section-change-buttons-container">
 						<?php                     
                         $target_section_number = $counter_for_preserving_section_names - 1;
-                        $section_label = $sections[ $counter_for_preserving_section_names - 1 ];
+                        $section_label = $sections[ $counter_for_preserving_section_names - 1 ]['label'];
                         $direction = 'previous';
                         $button_inner_html = sprintf(esc_html__( "Go to %s", 'ws-custom-checkout' ), esc_html($section_label));
                         if( 'next' == $direction ) {
