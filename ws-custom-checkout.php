@@ -7,8 +7,8 @@
  * Requires at least: 5.0
  * Author:            Web Systems
  * Author URI:        https://www.k4.pl/
- * License:           GPL v2 or later
- * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
+ * License:           GPLv3
+ * License URI:       https://www.gnu.org/licenses/gpl-3.0.html
  */
 
 if (!defined('WPINC')) {
