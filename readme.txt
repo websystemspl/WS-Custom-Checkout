@@ -1,5 +1,4 @@
 === WS Custom Checkout ===
-Plugin Name:       WS Custom Checkout
 Contributors:      websystems2006
 Tags:              checkout
 Requires at least: 5.0
