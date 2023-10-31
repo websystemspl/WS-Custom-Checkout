@@ -49,7 +49,7 @@ class WS_Custom_Checkout_Plugin_Manager
     private function checkoutPageSetting()
     {
         require_once(WS_CUSTOM_CHECKOUT_PLUGIN_DIR_PATH . 'includes/class-checkout-page-settings.php');
-        $checkout_Page_Settings = new Checkout_Page_Settings();
-        $checkout_Page_Settings->run();
+        $checkout_page_settings = new WS_Custom_Checkout_Page_Settings();
+        $checkout_page_settings->run();
     }
 }

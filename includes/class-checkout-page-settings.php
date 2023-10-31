@@ -1,11 +1,11 @@
 <?php
 
 /**
- * Class Checkout_Page_Settings
+ * Class WS_Custom_Checkout_Page_Settings
  *
  * Configure the plugin settings page.
  */
-class Checkout_Page_Settings
+class WS_Custom_Checkout_Page_Settings
 {
 
 	/**
@@ -14,96 +14,6 @@ class Checkout_Page_Settings
 	 * @var string $capability
 	 */
 	private $capability = 'manage_options';
-
-	/**
-	 * Array of fields that should be displayed in the settings page.
-	 *
-	 * @var array $fields
-	 */
-
-	private $generalFields = [
-		[
-			'id' => 'active',
-			'label' => 'Active',
-			'description' => '',
-			'type' => 'checkbox',
-		],
-		[
-			'id' => 'banner-background-color',
-			'label' => 'Banner Background Color',
-			'description' => '',
-			'type' => 'color',
-		],
-		[
-			'id' => 'active-step-color',
-			'label' => 'Active Step Color',
-			'description' => '',
-			'type' => 'color',
-		]
-	];
-
-	private $fields = [
-		[
-			'id' => 'buttons-font-size',
-			'label' => 'Buttons font size',
-			'description' => '',
-			'type' => 'number',
-		],
-		[
-			'id' => 'buttons-text-color',
-			'label' => 'Buttons text color',
-			'description' => '',
-			'type' => 'color',
-		],
-		[
-			'id' => 'buttons-background-color',
-			'label' => 'Buttons background color',
-			'description' => '',
-			'type' => 'color',
-		],
-		[
-			'id' => 'buttons-padding',
-			'label' => 'Buttons padding',
-			'description' => '',
-			'type' => 'number',
-		],
-		[
-			'id' => 'buttons-border',
-			'label' => 'Border on buttons',
-			'description' => '',
-			'type' => 'checkbox',
-		],
-		[
-			'id' => 'buttons-border-color',
-			'label' => 'Buttons border color',
-			'description' => '',
-			'type' => 'color',
-		],
-		[
-			'id' => 'buttons-border-size',
-			'label' => 'Buttons border size',
-			'description' => '',
-			'type' => 'number',
-		],
-		[
-			'id' => 'buttons-border-radius',
-			'label' => 'Buttons border radius',
-			'description' => '',
-			'type' => 'number',
-		],
-		[
-			'id' => 'buttons-opacity-value',
-			'label' => 'Buttons opacity on hover value (value / 100)',
-			'description' => '',
-			'type' => 'number',
-		],
-		[
-			'id' => 'buttons-background-color-hover',
-			'label' => 'Buttons background color on hover',
-			'description' => '',
-			'type' => 'color',
-		],
-	];
 
 	/**
 	 * The Plugin Settings constructor.
@@ -139,21 +49,102 @@ class Checkout_Page_Settings
 		// Register a new section.
 		add_settings_section(
 			'checkout-page-general-section',
-			__('General', 'checkout-page-settings'),
+			__('General', 'ws-custom-checkout'),
 			[$this, 'render_section'],
 			'checkout-page-settings'
 		);
 		add_settings_section(
 			'checkout-page-buttons-section',
-			__('Buttons', 'checkout-page-settings'),
+			__('Buttons', 'ws-custom-checkout'),
 			[$this, 'render_section'],
 			'checkout-page-settings'
 		);
 
-
+        $generalFields = [
+            [
+                'id' => 'active',
+                'label' => __('Active', 'ws-custom-checkout'),
+                'description' => __('', 'ws-custom-checkout'),
+                'type' => 'checkbox',
+            ],
+            [
+                'id' => 'banner-background-color',
+                'label' => __('Banner Background Color', 'ws-custom-checkout'),
+                'description' => __('', 'ws-custom-checkout'),
+                'type' => 'color',
+            ],
+            [
+                'id' => 'active-step-color',
+                'label' => __('Active Step Color', 'ws-custom-checkout'),
+                'description' => __('', 'ws-custom-checkout'),
+                'type' => 'color',
+            ]
+        ];
+        $buttonsFields = [
+            [
+                'id' => 'buttons-font-size',
+                'label' => __('Buttons font size', 'ws-custom-checkout'),
+                'description' => __('', 'ws-custom-checkout'),
+                'type' => 'number',
+            ],
+            [
+                'id' => 'buttons-text-color',
+                'label' => __('Buttons text color', 'ws-custom-checkout'),
+                'description' => __('', 'ws-custom-checkout'),
+                'type' => 'color',
+            ],
+            [
+                'id' => 'buttons-background-color',
+                'label' => __('Buttons background color', 'ws-custom-checkout'),
+                'description' => __('', 'ws-custom-checkout'),
+                'type' => 'color',
+            ],
+            [
+                'id' => 'buttons-padding',
+                'label' => __('Buttons padding', 'ws-custom-checkout'),
+                'description' => __('', 'ws-custom-checkout'),
+                'type' => 'number',
+            ],
+            [
+                'id' => 'buttons-border',
+                'label' => __('Border on buttons', 'ws-custom-checkout'),
+                'description' => __('', 'ws-custom-checkout'),
+                'type' => 'checkbox',
+            ],
+            [
+                'id' => 'buttons-border-color',
+                'label' => __('Buttons border color', 'ws-custom-checkout'),
+                'description' => __('', 'ws-custom-checkout'),
+                'type' => 'color',
+            ],
+            [
+                'id' => 'buttons-border-size',
+                'label' => __('Buttons border size', 'ws-custom-checkout'),
+                'description' => __('', 'ws-custom-checkout'),
+                'type' => 'number',
+            ],
+            [
+                'id' => 'buttons-border-radius',
+                'label' => __('Buttons border radius', 'ws-custom-checkout'),
+                'description' => __('', 'ws-custom-checkout'),
+                'type' => 'number',
+            ],
+            [
+                'id' => 'buttons-opacity-value',
+                'label' => __('Buttons opacity on hover value (value / 100)', 'ws-custom-checkout'),
+                'description' => __('', 'ws-custom-checkout'),
+                'type' => 'number',
+            ],
+            [
+                'id' => 'buttons-background-color-hover',
+                'label' => __('Buttons background color on hover', 'ws-custom-checkout'),
+                'description' => __('', 'ws-custom-checkout'),
+                'type' => 'color',
+            ],
+        ];
 		/* Register All The Fields. */
-		$this->addSettingFields($this->generalFields, [$this, 'render_field'], 'checkout-page-settings', 'checkout-page-general-section');
-		$this->addSettingFields($this->fields, [$this, 'render_field'], 'checkout-page-settings', 'checkout-page-buttons-section');
+		$this->addSettingFields($generalFields, [$this, 'render_field'], 'checkout-page-settings', 'checkout-page-general-section');
+		$this->addSettingFields($buttonsFields, [$this, 'render_field'], 'checkout-page-settings', 'checkout-page-buttons-section');
 	}
 
 	function addSettingFields($fields, $callback, $manuPage, $section)
@@ -162,7 +153,7 @@ class Checkout_Page_Settings
 			// Register a new field in the main section.
 			add_settings_field(
 				$field['id'], /* ID for the field. Only used internally. To set the HTML ID attribute, use $args['label_for']. */
-				__($field['label'], $manuPage), /* Label for the field. */
+				$field['label'], /* Label for the field. */
 				$callback, /* The name of the callback function. */
 				$manuPage, /* The menu page on which to display this field. */
 				$section, /* The section of the settings page in which to show the box. */
@@ -208,14 +199,18 @@ class Checkout_Page_Settings
 		// WordPress will add the "settings-updated" $_GET parameter to the url
 		if (isset($_GET['settings-updated'])) {
 			// add settings saved message with the class of "updated"
-			add_settings_error('wporg_messages', 'wporg_message', __('Settings Saved', 'checkout-page-settings'), 'updated');
+			add_settings_error('wporg_messages', 'wporg_message', __('Settings Saved', 'ws-custom-checkout'), 'updated');
 		}
 
 		// show error/update messages
-
-		global $wp_settings_sections;
-		$page = $_GET['page'];
-		$sections = $wp_settings_sections[$page];
+        $sections = [];
+        if(isset($_GET['page'])) {
+            global $wp_settings_sections;
+            $page = sanitize_text_field($_GET['page']);
+            if(isset($wp_settings_sections[$page]) && is_iterable($wp_settings_sections[$page])) {
+                $sections = $wp_settings_sections[$page];
+            }
+        }
 		$pluginData = get_plugin_data(WS_CUSTOM_CHECKOUT_PLUGIN_DIR_PATH . 'ws-custom-checkout.php');
 ?>
 		<div id="settings-container" class="wrap">
@@ -223,10 +218,10 @@ class Checkout_Page_Settings
 			<div class="information-container">
 				<div class="first-row">
 					<a href="<?php echo $pluginData['AuthorURI']; ?>"><img width="100px" height="100px" src="<?php echo WS_CUSTOM_CHECKOUT_PLUGIN_DIR_URL . "assets/src/img/k4-logo.png"; ?>"></img></a>
-					<p><?php echo __($pluginData['Name'], $pluginData['TextDomain']); ?></p>
+					<p><?php echo $pluginData['Name']; ?></p>
 				</div>
 				<div class="description">
-					<p><?php echo __($pluginData['Description'], $pluginData['TextDomain']);  ?></p>
+					<p><?php echo $pluginData['Description'];  ?></p>
 				</div>
 			</div>
 			<div class="settings-tabs">
@@ -277,7 +272,7 @@ class Checkout_Page_Settings
 		?>
 					<input type="text" id="<?php echo esc_attr($field['id']); ?>" name="wporg_options[<?php echo esc_attr($field['id']); ?>]" value="<?php echo isset($options[$field['id']]) ? esc_attr($options[$field['id']]) : ''; ?>">
 					<p class="description">
-						<?php esc_html_e($field['description'], 'checkout-page-settings'); ?>
+						<?php echo esc_html($field['description']); ?>
 					</p>
 				<?php
 					break;
@@ -287,7 +282,7 @@ class Checkout_Page_Settings
 				?>
 					<input type="checkbox" id="<?php echo esc_attr($field['id']); ?>" name="wporg_options[<?php echo esc_attr($field['id']); ?>]" value="1" <?php echo isset($options[$field['id']]) ? (checked($options[$field['id']], 1, false)) : (''); ?>>
 					<p class="description">
-						<?php esc_html_e($field['description'], 'checkout-page-settings'); ?>
+						<?php echo esc_html($field['description']); ?>
 					</p>
 				<?php
 					break;
@@ -297,7 +292,7 @@ class Checkout_Page_Settings
 				?>
 					<textarea id="<?php echo esc_attr($field['id']); ?>" name="wporg_options[<?php echo esc_attr($field['id']); ?>]"><?php echo isset($options[$field['id']]) ? esc_attr($options[$field['id']]) : ''; ?></textarea>
 					<p class="description">
-						<?php esc_html_e($field['description'], 'checkout-page-settings'); ?>
+						<?php echo esc_html($field['description']); ?>
 					</p>
 				<?php
 					break;
@@ -313,7 +308,7 @@ class Checkout_Page_Settings
 						<?php } ?>
 					</select>
 					<p class="description">
-						<?php esc_html_e($field['description'], 'checkout-page-settings'); ?>
+						<?php echo esc_html($field['description']); ?>
 					</p>
 				<?php
 					break;
@@ -323,7 +318,7 @@ class Checkout_Page_Settings
 				?>
 					<input type="password" id="<?php echo esc_attr($field['id']); ?>" name="wporg_options[<?php echo esc_attr($field['id']); ?>]" value="<?php echo isset($options[$field['id']]) ? esc_attr($options[$field['id']]) : ''; ?>">
 					<p class="description">
-						<?php esc_html_e($field['description'], 'checkout-page-settings'); ?>
+						<?php echo esc_html($field['description']); ?>
 					</p>
 				<?php
 					break;
@@ -345,7 +340,7 @@ class Checkout_Page_Settings
 				?>
 					<input type="email" id="<?php echo esc_attr($field['id']); ?>" name="wporg_options[<?php echo esc_attr($field['id']); ?>]" value="<?php echo isset($options[$field['id']]) ? esc_attr($options[$field['id']]) : ''; ?>">
 					<p class="description">
-						<?php esc_html_e($field['description'], 'checkout-page-settings'); ?>
+						<?php echo esc_html($field['description']); ?>
 					</p>
 				<?php
 					break;
@@ -355,7 +350,7 @@ class Checkout_Page_Settings
 				?>
 					<input type="url" id="<?php echo esc_attr($field['id']); ?>" name="wporg_options[<?php echo esc_attr($field['id']); ?>]" value="<?php echo isset($options[$field['id']]) ? esc_attr($options[$field['id']]) : ''; ?>">
 					<p class="description">
-						<?php esc_html_e($field['description'], 'checkout-page-settings'); ?>
+						<?php echo esc_html($field['description']); ?>
 					</p>
 				<?php
 					break;
@@ -365,7 +360,7 @@ class Checkout_Page_Settings
 				?>
 					<input type="color" id="<?php echo esc_attr($field['id']); ?>" name="wporg_options[<?php echo esc_attr($field['id']); ?>]" value="<?php echo isset($options[$field['id']]) ? esc_attr($options[$field['id']]) : ''; ?>">
 					<p class="description">
-						<?php esc_html_e($field['description'], 'checkout-page-settings'); ?>
+						<?php echo esc_html($field['description']); ?>
 					</p>
 				<?php
 					break;
@@ -375,7 +370,7 @@ class Checkout_Page_Settings
 				?>
 					<input type="date" id="<?php echo esc_attr($field['id']); ?>" name="wporg_options[<?php echo esc_attr($field['id']); ?>]" value="<?php echo isset($options[$field['id']]) ? esc_attr($options[$field['id']]) : ''; ?>">
 					<p class="description">
-						<?php esc_html_e($field['description'], 'checkout-page-settings'); ?>
+						<?php echo esc_html($field['description']); ?>
 					</p>
 				<?php
 					break;
@@ -384,7 +379,7 @@ class Checkout_Page_Settings
 				?>
 					<input type="number" id="<?php echo esc_attr($field['id']); ?>" name="wporg_options[<?php echo esc_attr($field['id']); ?>]" value="<?php echo isset($options[$field['id']]) ? esc_attr($options[$field['id']]) : ''; ?>" min="0" max="100">
 					<p class="description">
-						<?php esc_html_e($field['description'], 'checkout-page-settings'); ?>
+						<?php echo esc_html($field['description']); ?>
 					</p>
 		<?php
 					break;
@@ -408,7 +403,7 @@ class Checkout_Page_Settings
 	{
 		?>
 		<div class="<?php echo $args['id'] ?>">
-			<p id="<?php echo esc_attr($args['id']); ?>"><?php esc_html_e('', 'checkout-page-settings'); ?></p>
+			<p id="<?php echo esc_attr($args['id']); ?>"><?php esc_html_e('', 'ws-custom-checkout'); ?></p>
 		</div>
 
 <?php
