@@ -18,6 +18,7 @@
     width: 25px;
     margin: auto !important;
     display: block !important;
+    padding: 0px!important;
 }
 .custom-checkout-page-section-change-button-neighbour{
     cursor: pointer;

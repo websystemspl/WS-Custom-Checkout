@@ -9,7 +9,7 @@ class WSCCP_Plugin_Manager
         $templates_for_replacement = [];
         foreach ($this->_sections as $section) {
             $templates_for_replacement[$section] = [];
-            foreach (scandir(WS_CUSTOM_CHECKOUT_PLUGIN_DIR_PATH . "{$section}/templates/for_replacement") as $file_name) {
+            foreach (scandir(WSCCP_DIR_PATH . "{$section}/templates/for_replacement") as $file_name) {
                 if (!in_array($file_name, ['.', '..'])) {
                     $templates_for_replacement[$section][] = $file_name;
                 }
@@ -28,7 +28,7 @@ class WSCCP_Plugin_Manager
 
     private function register_template_replacement_filter()
     {
-        require_once(WS_CUSTOM_CHECKOUT_PLUGIN_DIR_PATH . 'includes/class-template-replacement-manager.php');
+        require_once(WSCCP_DIR_PATH . 'includes/class-template-replacement-manager.php');
 
         $templates_for_replacement = $this->initialise_templates_for_replacement_from_scandir();
 
@@ -39,7 +39,7 @@ class WSCCP_Plugin_Manager
 
     private function register_hooks()
     {
-        require_once(WS_CUSTOM_CHECKOUT_PLUGIN_DIR_PATH . 'includes/class-hook-manager.php');
+        require_once(WSCCP_DIR_PATH . 'includes/class-hook-manager.php');
 
         $hook_manager = new WSCCP_Checkout_Hook_Manager();
 
@@ -48,7 +48,7 @@ class WSCCP_Plugin_Manager
 
     private function checkoutPageSetting()
     {
-        require_once(WS_CUSTOM_CHECKOUT_PLUGIN_DIR_PATH . 'includes/class-checkout-page-settings.php');
+        require_once(WSCCP_DIR_PATH . 'includes/class-checkout-page-settings.php');
         $checkout_page_settings = new WSCCP_Page_Settings();
         $checkout_page_settings->run();
     }

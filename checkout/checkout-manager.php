@@ -23,21 +23,21 @@ class WSCCP_Checkout_Checkout_Manager {
         }
     }
     private function enqueue_checkout_scripts() {
-        wp_register_script( 'wsccp_checkout-js-checkout-swipe', WS_CUSTOM_CHECKOUT_PLUGIN_DIR_URL . 'checkout/js/swipe.js', [ 'jquery'  ], false, true );//in_footer
+        wp_register_script( 'wsccp_checkout-js-checkout-swipe', WSCCP_DIR_URL . 'checkout/js/swipe.js', [ 'jquery'  ], false, true );//in_footer
         wp_enqueue_script( 'wsccp_checkout-js-checkout-swipe' );
 
 
-        wp_register_script( 'wsccp_checkout-js-checkout-sections', WS_CUSTOM_CHECKOUT_PLUGIN_DIR_URL . 'checkout/js/sections.js', [ 'jquery', 'wsccp_checkout-js-checkout-swipe'  ], false, true );//in_footer
+        wp_register_script( 'wsccp_checkout-js-checkout-sections', WSCCP_DIR_URL . 'checkout/js/sections.js', [ 'jquery', 'wsccp_checkout-js-checkout-swipe'  ], false, true );//in_footer
         wp_enqueue_script( 'wsccp_checkout-js-checkout-sections' );
   
         if ( WC()->cart->needs_shipping() && WC()->cart->show_shipping() ) {
             $script_name = 'shipping';           
-            wp_register_script( 'wsccp_checkout-js-checkout-shipping', WS_CUSTOM_CHECKOUT_PLUGIN_DIR_URL . 'checkout/js/shipping.js', [ 'wsccp_checkout-js-checkout-sections' ], false, true );//in_footer
+            wp_register_script( 'wsccp_checkout-js-checkout-shipping', WSCCP_DIR_URL . 'checkout/js/shipping.js', [ 'wsccp_checkout-js-checkout-sections' ], false, true );//in_footer
             wp_enqueue_script( 'wsccp_checkout-js-checkout-shipping' );
         }
     }
     private function enqueue_checkout_styles() {   
-        wp_register_style( 'wsccp_checkout-css-checkout-sections', WS_CUSTOM_CHECKOUT_PLUGIN_DIR_URL . 'checkout/css/sections.css' );
+        wp_register_style( 'wsccp_checkout-css-checkout-sections', WSCCP_DIR_URL . 'checkout/css/sections.css' );
         wp_enqueue_style( 'wsccp_checkout-css-checkout-sections' );
     }
 }

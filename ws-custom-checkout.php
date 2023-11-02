@@ -15,16 +15,16 @@ if (!defined('WPINC')) {
     die;
 }
 
-if (!defined('WS_CUSTOM_CHECKOUT_PLUGIN_DIR_PATH')) {
-    define('WS_CUSTOM_CHECKOUT_PLUGIN_DIR_PATH', plugin_dir_path(__FILE__));
+if (!defined('WSCCP_DIR_PATH')) {
+    define('WSCCP_DIR_PATH', plugin_dir_path(__FILE__));
 }
 
-if (!defined('WS_CUSTOM_CHECKOUT_PLUGIN_DIR_URL')) {
-    define('WS_CUSTOM_CHECKOUT_PLUGIN_DIR_URL', plugin_dir_url(__FILE__));
+if (!defined('WSCCP_DIR_URL')) {
+    define('WSCCP_DIR_URL', plugin_dir_url(__FILE__));
 }
 
 if (!class_exists('WSCCP_Plugin_Manager')) {
-    require_once WS_CUSTOM_CHECKOUT_PLUGIN_DIR_PATH . 'includes/class-plugin-manager.php';
+    require_once WSCCP_DIR_PATH . 'includes/class-plugin-manager.php';
     $plugin_manager = new WSCCP_Plugin_Manager();
     $plugin_manager->run();
 }

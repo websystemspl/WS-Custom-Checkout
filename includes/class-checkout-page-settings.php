@@ -29,12 +29,12 @@ class WSCCP_Page_Settings
 	public function admin_enqueue_scripts($screen)
 	{
 		// Quit if it's not our screen
-		if ('toplevel_page_checkout-page-settings' !== $screen) return;
+		if ('toplevel_page_wsccp-checkout-page-settings' !== $screen) return;
 
 		// If we get this far, it must be our screen
 		// Enqueue our assets
-		wp_enqueue_script('checkout-page-settings-js', WS_CUSTOM_CHECKOUT_PLUGIN_DIR_URL . 'assets/js/admin/sections.js', array(), null, true);
-		wp_enqueue_style('checkout-page-settings-style', WS_CUSTOM_CHECKOUT_PLUGIN_DIR_URL . 'assets/css/admin/sections.css');
+		wp_enqueue_script('wsccp-checkout-page-settings-js', WSCCP_DIR_URL . 'assets/js/admin/sections.js', array(), null, true);
+		wp_enqueue_style('wsccp-checkout-page-settings-style', WSCCP_DIR_URL . 'assets/css/admin/sections.css');
 	}
 
 	/**
@@ -44,20 +44,20 @@ class WSCCP_Page_Settings
 	{
 
 		// Register a new setting this page.
-		register_setting('checkout-page-settings', 'wporg_options');
+		register_setting('wsccp-checkout-page-settings', 'wsccp_options');
 
 		// Register a new section.
 		add_settings_section(
-			'checkout-page-general-section',
+			'wsccp-checkout-page-general-section',
 			__('General', 'ws-custom-checkout'),
 			[$this, 'render_section'],
-			'checkout-page-settings'
+			'wsccp-checkout-page-settings'
 		);
 		add_settings_section(
-			'checkout-page-buttons-section',
+			'wsccp-checkout-page-buttons-section',
 			__('Buttons', 'ws-custom-checkout'),
 			[$this, 'render_section'],
-			'checkout-page-settings'
+			'wsccp-checkout-page-settings'
 		);
 
         $generalFields = [
@@ -143,8 +143,8 @@ class WSCCP_Page_Settings
             ],
         ];
 		/* Register All The Fields. */
-		$this->addSettingFields($generalFields, [$this, 'render_field'], 'checkout-page-settings', 'checkout-page-general-section');
-		$this->addSettingFields($buttonsFields, [$this, 'render_field'], 'checkout-page-settings', 'checkout-page-buttons-section');
+		$this->addSettingFields($generalFields, [$this, 'render_field'], 'wsccp-checkout-page-settings', 'wsccp-checkout-page-general-section');
+		$this->addSettingFields($buttonsFields, [$this, 'render_field'], 'wsccp-checkout-page-settings', 'wsccp-checkout-page-buttons-section');
 	}
 
 	function addSettingFields($fields, $callback, $manuPage, $section)
@@ -175,7 +175,7 @@ class WSCCP_Page_Settings
 			'Settings', /* Page Title */
 			'Checkout Page', /* Menu Title */
 			$this->capability, /* Capability */
-			'checkout-page-settings', /* Menu Slug */
+			'wsccp-checkout-page-settings', /* Menu Slug */
 			[$this, 'render_options_page'], /* Callback */
 			'dashicons-performance', /* Icon */
 			'80', /* Position */
@@ -211,13 +211,13 @@ class WSCCP_Page_Settings
                 $sections = $wp_settings_sections[$page];
             }
         }
-		$pluginData = get_plugin_data(WS_CUSTOM_CHECKOUT_PLUGIN_DIR_PATH . 'ws-custom-checkout.php');
+		$pluginData = get_plugin_data(WSCCP_DIR_PATH . 'ws-custom-checkout.php');
 ?>
 		<div id="settings-container" class="wrap">
 			<div class="messages-box"><?php settings_errors('wporg_messages'); ?></div>
 			<div class="information-container">
 				<div class="first-row">
-					<a href="<?php echo $pluginData['AuthorURI']; ?>"><img width="100px" height="100px" src="<?php echo WS_CUSTOM_CHECKOUT_PLUGIN_DIR_URL . "assets/src/img/k4-logo.png"; ?>"></img></a>
+					<a href="<?php echo $pluginData['AuthorURI']; ?>"><img width="100px" height="100px" src="<?php echo WSCCP_DIR_URL . "assets/src/img/k4-logo.png"; ?>"></img></a>
 					<p><?php echo $pluginData['Name']; ?></p>
 				</div>
 				<div class="description">
@@ -236,13 +236,13 @@ class WSCCP_Page_Settings
 			<form action="options.php" method="post">
 				<?php
 				/* output security fields for the registered setting "wporg" */
-				settings_fields('checkout-page-settings');
+				settings_fields('wsccp-checkout-page-settings');
 				/* output setting sections and their fields */
 				/* (sections are registered for "wporg", each field is registered to a specific section) */
 
 				?>
-				<div id="checkout-page-general-section" class="active"><?php do_settings_fields('checkout-page-settings',  'checkout-page-general-section'); ?></div>
-				<div id="checkout-page-buttons-section"><?php do_settings_fields('checkout-page-settings',  'checkout-page-buttons-section'); ?></div>
+				<div id="wsccp-checkout-page-general-section" class="active"><?php do_settings_fields('wsccp-checkout-page-settings',  'wsccp-checkout-page-general-section'); ?></div>
+				<div id="wsccp-checkout-page-buttons-section"><?php do_settings_fields('wsccp-checkout-page-settings',  'wsccp-checkout-page-buttons-section'); ?></div>
 				<?php
 				/* output save settings button */
 				submit_button('Save Settings');
@@ -264,13 +264,13 @@ class WSCCP_Page_Settings
 		$field = $args['field'];
 
 		// Get the value of the setting we've registered with register_setting()
-		$options = get_option('wporg_options');
+		$options = get_option('wsccp_options');
 
 		switch ($field['type']) {
 
 			case "text": {
 		?>
-					<input type="text" id="<?php echo esc_attr($field['id']); ?>" name="wporg_options[<?php echo esc_attr($field['id']); ?>]" value="<?php echo isset($options[$field['id']]) ? esc_attr($options[$field['id']]) : ''; ?>">
+					<input type="text" id="<?php echo esc_attr($field['id']); ?>" name="wsccp_options[<?php echo esc_attr($field['id']); ?>]" value="<?php echo isset($options[$field['id']]) ? esc_attr($options[$field['id']]) : ''; ?>">
 					<p class="description">
 						<?php echo esc_html($field['description']); ?>
 					</p>
@@ -280,7 +280,7 @@ class WSCCP_Page_Settings
 
 			case "checkbox": {
 				?>
-					<input type="checkbox" id="<?php echo esc_attr($field['id']); ?>" name="wporg_options[<?php echo esc_attr($field['id']); ?>]" value="1" <?php echo isset($options[$field['id']]) ? (checked($options[$field['id']], 1, false)) : (''); ?>>
+					<input type="checkbox" id="<?php echo esc_attr($field['id']); ?>" name="wsccp_options[<?php echo esc_attr($field['id']); ?>]" value="1" <?php echo isset($options[$field['id']]) ? (checked($options[$field['id']], 1, false)) : (''); ?>>
 					<p class="description">
 						<?php echo esc_html($field['description']); ?>
 					</p>
@@ -290,7 +290,7 @@ class WSCCP_Page_Settings
 
 			case "textarea": {
 				?>
-					<textarea id="<?php echo esc_attr($field['id']); ?>" name="wporg_options[<?php echo esc_attr($field['id']); ?>]"><?php echo isset($options[$field['id']]) ? esc_attr($options[$field['id']]) : ''; ?></textarea>
+					<textarea id="<?php echo esc_attr($field['id']); ?>" name="wsccp_options[<?php echo esc_attr($field['id']); ?>]"><?php echo isset($options[$field['id']]) ? esc_attr($options[$field['id']]) : ''; ?></textarea>
 					<p class="description">
 						<?php echo esc_html($field['description']); ?>
 					</p>
@@ -300,7 +300,7 @@ class WSCCP_Page_Settings
 
 			case "select": {
 				?>
-					<select id="<?php echo esc_attr($field['id']); ?>" name="wporg_options[<?php echo esc_attr($field['id']); ?>]">
+					<select id="<?php echo esc_attr($field['id']); ?>" name="wsccp_options[<?php echo esc_attr($field['id']); ?>]">
 						<?php foreach ($field['options'] as $key => $option) { ?>
 							<option value="<?php echo $key; ?>" <?php echo isset($options[$field['id']]) ? (selected($options[$field['id']], $key, false)) : (''); ?>>
 								<?php echo $option; ?>
@@ -316,7 +316,7 @@ class WSCCP_Page_Settings
 
 			case "password": {
 				?>
-					<input type="password" id="<?php echo esc_attr($field['id']); ?>" name="wporg_options[<?php echo esc_attr($field['id']); ?>]" value="<?php echo isset($options[$field['id']]) ? esc_attr($options[$field['id']]) : ''; ?>">
+					<input type="password" id="<?php echo esc_attr($field['id']); ?>" name="wsccp_options[<?php echo esc_attr($field['id']); ?>]" value="<?php echo isset($options[$field['id']]) ? esc_attr($options[$field['id']]) : ''; ?>">
 					<p class="description">
 						<?php echo esc_html($field['description']); ?>
 					</p>
@@ -329,7 +329,7 @@ class WSCCP_Page_Settings
 						isset($options[$field['id']]) ? $options[$field['id']] : '',
 						$field['id'],
 						array(
-							'textarea_name' => 'wporg_options[' . $field['id'] . ']',
+							'textarea_name' => 'wsccp_options[' . $field['id'] . ']',
 							'textarea_rows' => 5,
 						)
 					);
@@ -338,7 +338,7 @@ class WSCCP_Page_Settings
 
 			case "email": {
 				?>
-					<input type="email" id="<?php echo esc_attr($field['id']); ?>" name="wporg_options[<?php echo esc_attr($field['id']); ?>]" value="<?php echo isset($options[$field['id']]) ? esc_attr($options[$field['id']]) : ''; ?>">
+					<input type="email" id="<?php echo esc_attr($field['id']); ?>" name="wsccp_options[<?php echo esc_attr($field['id']); ?>]" value="<?php echo isset($options[$field['id']]) ? esc_attr($options[$field['id']]) : ''; ?>">
 					<p class="description">
 						<?php echo esc_html($field['description']); ?>
 					</p>
@@ -348,7 +348,7 @@ class WSCCP_Page_Settings
 
 			case "url": {
 				?>
-					<input type="url" id="<?php echo esc_attr($field['id']); ?>" name="wporg_options[<?php echo esc_attr($field['id']); ?>]" value="<?php echo isset($options[$field['id']]) ? esc_attr($options[$field['id']]) : ''; ?>">
+					<input type="url" id="<?php echo esc_attr($field['id']); ?>" name="wsccp_options[<?php echo esc_attr($field['id']); ?>]" value="<?php echo isset($options[$field['id']]) ? esc_attr($options[$field['id']]) : ''; ?>">
 					<p class="description">
 						<?php echo esc_html($field['description']); ?>
 					</p>
@@ -358,7 +358,7 @@ class WSCCP_Page_Settings
 
 			case "color": {
 				?>
-					<input type="color" id="<?php echo esc_attr($field['id']); ?>" name="wporg_options[<?php echo esc_attr($field['id']); ?>]" value="<?php echo isset($options[$field['id']]) ? esc_attr($options[$field['id']]) : ''; ?>">
+					<input type="color" id="<?php echo esc_attr($field['id']); ?>" name="wsccp_options[<?php echo esc_attr($field['id']); ?>]" value="<?php echo isset($options[$field['id']]) ? esc_attr($options[$field['id']]) : ''; ?>">
 					<p class="description">
 						<?php echo esc_html($field['description']); ?>
 					</p>
@@ -368,7 +368,7 @@ class WSCCP_Page_Settings
 
 			case "date": {
 				?>
-					<input type="date" id="<?php echo esc_attr($field['id']); ?>" name="wporg_options[<?php echo esc_attr($field['id']); ?>]" value="<?php echo isset($options[$field['id']]) ? esc_attr($options[$field['id']]) : ''; ?>">
+					<input type="date" id="<?php echo esc_attr($field['id']); ?>" name="wsccp_options[<?php echo esc_attr($field['id']); ?>]" value="<?php echo isset($options[$field['id']]) ? esc_attr($options[$field['id']]) : ''; ?>">
 					<p class="description">
 						<?php echo esc_html($field['description']); ?>
 					</p>
@@ -377,7 +377,7 @@ class WSCCP_Page_Settings
 				}
 			case "number": {
 				?>
-					<input type="number" id="<?php echo esc_attr($field['id']); ?>" name="wporg_options[<?php echo esc_attr($field['id']); ?>]" value="<?php echo isset($options[$field['id']]) ? esc_attr($options[$field['id']]) : ''; ?>" min="0" max="100">
+					<input type="number" id="<?php echo esc_attr($field['id']); ?>" name="wsccp_options[<?php echo esc_attr($field['id']); ?>]" value="<?php echo isset($options[$field['id']]) ? esc_attr($options[$field['id']]) : ''; ?>" min="0" max="100">
 					<p class="description">
 						<?php echo esc_html($field['description']); ?>
 					</p>
@@ -411,7 +411,7 @@ class WSCCP_Page_Settings
 
 	function addCustomStyles()
 	{
-		$options = get_option('wporg_options');
+		$options = get_option('wsccp_options');
 		$bannerColor = $options['banner-background-color'];
 		$currentStepColor = $options['active-step-color'];
 		$buttonsBackgroundColor = $options['buttons-background-color'];
