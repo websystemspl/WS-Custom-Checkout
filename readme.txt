@@ -32,10 +32,10 @@ Delete the plugin.
   
 == Screenshots ==  
 
-1. src/img/screenshot-1.png  
-2. src/img/screenshot-2.png  
-3. src/img/screenshot-3.png  
-4. src/img/screenshot-4.png  
+1. Customization of the plugin.
+2. The information section of the Tab-based checkout.
+3. The shipping section of the Tab-based checkout.
+4. The payment section of the Tab-based checkout.
   
 == Changelog == 
 
