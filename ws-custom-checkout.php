@@ -1,7 +1,7 @@
 <?php
 /*
  * Plugin Name:       WS Custom Checkout
- * Text Domain:       WS-Custom-Checkout
+ * Text Domain:       ws-custom-checkout
  * Description:       Tab-based checkout page layout.
  * Version:           1.0
  * Requires at least: 5.0
