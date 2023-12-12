@@ -60,88 +60,88 @@ class WSCCP_Page_Settings
 			'wsccp-checkout-page-settings'
 		);
 
-        $generalFields = [
-            [
-                'id' => 'active',
-                'label' => __('Active', 'ws-custom-checkout'),
-                'description' => __('', 'ws-custom-checkout'),
-                'type' => 'checkbox',
-            ],
-            [
-                'id' => 'banner-background-color',
-                'label' => __('Banner Background Color', 'ws-custom-checkout'),
-                'description' => __('', 'ws-custom-checkout'),
-                'type' => 'color',
-            ],
-            [
-                'id' => 'active-step-color',
-                'label' => __('Active Step Color', 'ws-custom-checkout'),
-                'description' => __('', 'ws-custom-checkout'),
-                'type' => 'color',
-            ]
-        ];
-        $buttonsFields = [
-            [
-                'id' => 'buttons-font-size',
-                'label' => __('Buttons font size', 'ws-custom-checkout'),
-                'description' => __('', 'ws-custom-checkout'),
-                'type' => 'number',
-            ],
-            [
-                'id' => 'buttons-text-color',
-                'label' => __('Buttons text color', 'ws-custom-checkout'),
-                'description' => __('', 'ws-custom-checkout'),
-                'type' => 'color',
-            ],
-            [
-                'id' => 'buttons-background-color',
-                'label' => __('Buttons background color', 'ws-custom-checkout'),
-                'description' => __('', 'ws-custom-checkout'),
-                'type' => 'color',
-            ],
-            [
-                'id' => 'buttons-padding',
-                'label' => __('Buttons padding', 'ws-custom-checkout'),
-                'description' => __('', 'ws-custom-checkout'),
-                'type' => 'number',
-            ],
-            [
-                'id' => 'buttons-border',
-                'label' => __('Border on buttons', 'ws-custom-checkout'),
-                'description' => __('', 'ws-custom-checkout'),
-                'type' => 'checkbox',
-            ],
-            [
-                'id' => 'buttons-border-color',
-                'label' => __('Buttons border color', 'ws-custom-checkout'),
-                'description' => __('', 'ws-custom-checkout'),
-                'type' => 'color',
-            ],
-            [
-                'id' => 'buttons-border-size',
-                'label' => __('Buttons border size', 'ws-custom-checkout'),
-                'description' => __('', 'ws-custom-checkout'),
-                'type' => 'number',
-            ],
-            [
-                'id' => 'buttons-border-radius',
-                'label' => __('Buttons border radius', 'ws-custom-checkout'),
-                'description' => __('', 'ws-custom-checkout'),
-                'type' => 'number',
-            ],
-            [
-                'id' => 'buttons-opacity-value',
-                'label' => __('Buttons opacity on hover value (value / 100)', 'ws-custom-checkout'),
-                'description' => __('', 'ws-custom-checkout'),
-                'type' => 'number',
-            ],
-            [
-                'id' => 'buttons-background-color-hover',
-                'label' => __('Buttons background color on hover', 'ws-custom-checkout'),
-                'description' => __('', 'ws-custom-checkout'),
-                'type' => 'color',
-            ],
-        ];
+		$generalFields = [
+			[
+				'id' => 'active',
+				'label' => __('Active', 'ws-custom-checkout'),
+				'description' => __('', 'ws-custom-checkout'),
+				'type' => 'checkbox',
+			],
+			[
+				'id' => 'banner-background-color',
+				'label' => __('Banner Background Color', 'ws-custom-checkout'),
+				'description' => __('', 'ws-custom-checkout'),
+				'type' => 'color',
+			],
+			[
+				'id' => 'active-step-color',
+				'label' => __('Active Step Color', 'ws-custom-checkout'),
+				'description' => __('', 'ws-custom-checkout'),
+				'type' => 'color',
+			]
+		];
+		$buttonsFields = [
+			[
+				'id' => 'buttons-font-size',
+				'label' => __('Buttons font size', 'ws-custom-checkout'),
+				'description' => __('', 'ws-custom-checkout'),
+				'type' => 'number',
+			],
+			[
+				'id' => 'buttons-text-color',
+				'label' => __('Buttons text color', 'ws-custom-checkout'),
+				'description' => __('', 'ws-custom-checkout'),
+				'type' => 'color',
+			],
+			[
+				'id' => 'buttons-background-color',
+				'label' => __('Buttons background color', 'ws-custom-checkout'),
+				'description' => __('', 'ws-custom-checkout'),
+				'type' => 'color',
+			],
+			[
+				'id' => 'buttons-padding',
+				'label' => __('Buttons padding', 'ws-custom-checkout'),
+				'description' => __('', 'ws-custom-checkout'),
+				'type' => 'number',
+			],
+			[
+				'id' => 'buttons-border',
+				'label' => __('Border on buttons', 'ws-custom-checkout'),
+				'description' => __('', 'ws-custom-checkout'),
+				'type' => 'checkbox',
+			],
+			[
+				'id' => 'buttons-border-color',
+				'label' => __('Buttons border color', 'ws-custom-checkout'),
+				'description' => __('', 'ws-custom-checkout'),
+				'type' => 'color',
+			],
+			[
+				'id' => 'buttons-border-size',
+				'label' => __('Buttons border size', 'ws-custom-checkout'),
+				'description' => __('', 'ws-custom-checkout'),
+				'type' => 'number',
+			],
+			[
+				'id' => 'buttons-border-radius',
+				'label' => __('Buttons border radius', 'ws-custom-checkout'),
+				'description' => __('', 'ws-custom-checkout'),
+				'type' => 'number',
+			],
+			[
+				'id' => 'buttons-opacity-value',
+				'label' => __('Buttons opacity on hover value (value / 100)', 'ws-custom-checkout'),
+				'description' => __('', 'ws-custom-checkout'),
+				'type' => 'number',
+			],
+			[
+				'id' => 'buttons-background-color-hover',
+				'label' => __('Buttons background color on hover', 'ws-custom-checkout'),
+				'description' => __('', 'ws-custom-checkout'),
+				'type' => 'color',
+			],
+		];
 		/* Register All The Fields. */
 		$this->addSettingFields($generalFields, [$this, 'render_field'], 'wsccp-checkout-page-settings', 'wsccp-checkout-page-general-section');
 		$this->addSettingFields($buttonsFields, [$this, 'render_field'], 'wsccp-checkout-page-settings', 'wsccp-checkout-page-buttons-section');
@@ -203,32 +203,32 @@ class WSCCP_Page_Settings
 		}
 
 		// show error/update messages
-        $sections = [];
-        if(isset($_GET['page'])) {
-            global $wp_settings_sections;
-            $page = sanitize_text_field($_GET['page']);
-            if(isset($wp_settings_sections[$page]) && is_iterable($wp_settings_sections[$page])) {
-                $sections = $wp_settings_sections[$page];
-            }
-        }
+		$sections = [];
+		if (isset($_GET['page'])) {
+			global $wp_settings_sections;
+			$page = sanitize_text_field($_GET['page']);
+			if (isset($wp_settings_sections[$page]) && is_iterable($wp_settings_sections[$page])) {
+				$sections = $wp_settings_sections[$page];
+			}
+		}
 		$pluginData = get_plugin_data(WSCCP_DIR_PATH . 'ws-custom-checkout.php');
 ?>
 		<div id="settings-container" class="wrap">
 			<div class="messages-box"><?php settings_errors('wporg_messages'); ?></div>
 			<div class="information-container">
 				<div class="first-row">
-					<a href="<?php echo $pluginData['AuthorURI']; ?>"><img width="100px" height="100px" src="<?php echo WSCCP_DIR_URL . "assets/src/img/k4-logo.png"; ?>"></img></a>
-					<p><?php echo $pluginData['Name']; ?></p>
+					<a href="<?php echo esc_attr($pluginData['AuthorURI']); ?>"><img width="100px" height="100px" src="<?php echo esc_attr(WSCCP_DIR_URL) . "assets/src/img/k4-logo.png"; ?>"></img></a>
+					<p><?php echo esc_html($pluginData['Name']); ?></p>
 				</div>
 				<div class="description">
-					<p><?php echo $pluginData['Description'];  ?></p>
+					<p><?php echo esc_html(__('Tab-based checkout page layout.')); ?> <cite> <?php echo esc_html(__('Autor: ')) ?><a href="https://www.k4.pl/">Web Systems</a>.</cite></p>
 				</div>
 			</div>
 			<div class="settings-tabs">
 				<?php
 				foreach ($sections as $section) {
 				?>
-					<a href="<?php echo "#" . $section["id"]; ?>"><?php echo $section["title"]; ?></a>
+					<a href="<?php echo "#" . esc_attr($section["id"]); ?>"><?php echo esc_html($section["title"]); ?></a>
 				<?php
 				}
 				?>
@@ -302,7 +302,7 @@ class WSCCP_Page_Settings
 				?>
 					<select id="<?php echo esc_attr($field['id']); ?>" name="wsccp_options[<?php echo esc_attr($field['id']); ?>]">
 						<?php foreach ($field['options'] as $key => $option) { ?>
-							<option value="<?php echo $key; ?>" <?php echo isset($options[$field['id']]) ? (selected($options[$field['id']], $key, false)) : (''); ?>>
+							<option value="<?php echo esc_attr($key); ?>" <?php echo isset($options[$field['id']]) ? (esc_attr(selected($options[$field['id']], $key, false))) : (''); ?>>
 								<?php echo $option; ?>
 							</option>
 						<?php } ?>
@@ -402,7 +402,7 @@ class WSCCP_Page_Settings
 	function render_section(array $args): void
 	{
 		?>
-		<div class="<?php echo $args['id'] ?>">
+		<div class="<?php echo esc_attr($args['id']); ?>">
 			<p id="<?php echo esc_attr($args['id']); ?>"><?php esc_html_e('', 'ws-custom-checkout'); ?></p>
 		</div>
 
@@ -457,6 +457,6 @@ class WSCCP_Page_Settings
 			background-color: {$buttonsOpacityBackgroundColor};
 		}";
 
-		echo "<style>" . $custom_css . "</style>";
+		echo "<style>" . esc_html($custom_css) . "</style>";
 	}
 }
