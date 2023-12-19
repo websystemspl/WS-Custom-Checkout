@@ -303,7 +303,7 @@ class WSCCP_Page_Settings
 					<select id="<?php echo esc_attr($field['id']); ?>" name="wsccp_options[<?php echo esc_attr($field['id']); ?>]">
 						<?php foreach ($field['options'] as $key => $option) { ?>
 							<option value="<?php echo esc_attr($key); ?>" <?php echo isset($options[$field['id']]) ? (esc_attr(selected($options[$field['id']], $key, false))) : (''); ?>>
-								<?php echo $option; ?>
+								<?php echo esc_html($option); ?>
 							</option>
 						<?php } ?>
 					</select>
